@@ -7,4 +7,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "LifeProgressWallpaperKotlin"
-include ':app'
+include(":app")

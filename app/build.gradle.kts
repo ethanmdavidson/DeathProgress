@@ -42,7 +42,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = ext["compose_version"] as String
+        kotlinCompilerExtensionVersion = rootProject.extra["compose_version"] as String
     }
     packagingOptions {
         resources {
@@ -52,7 +52,7 @@ android {
 }
 
 dependencies {
-    val compose_version = ext["compose_version"] as String
+    val compose_version = rootProject.extra["compose_version"] as String
     implementation("androidx.core:core-ktx:1.6.0")
     implementation("androidx.appcompat:appcompat:1.3.1")
     implementation("com.google.android.material:material:1.4.0")
