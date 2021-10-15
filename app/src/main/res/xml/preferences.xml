@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <com.dr1009.app.chronodialogpreference.DateDialogPreference
+    <com.machinerychorus.lifeprogresswallpaper.customPrefs.DateDialogPreference
         android:key="@string/birthdateKey"
         android:title="Birth Date"
         android:defaultValue="1994-05-31" />
-    <com.machinerychorus.lifeprogresswallpaper.IntegerPreference
+    <com.machinerychorus.lifeprogresswallpaper.customPrefs.IntegerPreference
         android:key="@string/expectancyKey"
         android:title="Life Expectancy"
         android:defaultValue="85" />
@@ -21,11 +21,11 @@
         app:preference_attachAlphaSlideBar="false"
         app:preference_dialog_negative="@string/cancel"
         app:preference_dialog_positive="@string/confirm" />
-    <com.machinerychorus.lifeprogresswallpaper.IntegerPreference
+    <com.machinerychorus.lifeprogresswallpaper.customPrefs.IntegerPreference
         android:key="@string/progressFontSizeKey"
         android:title="Progress Font Size"
         android:defaultValue="240"/>
-    <com.machinerychorus.lifeprogresswallpaper.IntegerPreference
+    <com.machinerychorus.lifeprogresswallpaper.customPrefs.IntegerPreference
         android:key="@string/decimalsKey"
         android:title="Decimal Places"
         android:defaultValue="4"/>
@@ -33,7 +33,7 @@
         android:key="@string/goalsKey"
         android:title="Goals"
         android:hint="Enter your goals, reminders, motivations, etc. here"/>
-    <com.machinerychorus.lifeprogresswallpaper.IntegerPreference
+    <com.machinerychorus.lifeprogresswallpaper.customPrefs.IntegerPreference
         android:key="@string/goalsFontSizeKey"
         android:title="Goals Font Size"
         android:defaultValue="75"/>

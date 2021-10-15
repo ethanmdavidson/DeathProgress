@@ -4,9 +4,12 @@ import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
-import com.dr1009.app.chronodialogpreference.*
+import com.machinerychorus.lifeprogresswallpaper.customPrefs.DateDialogPreference
+import com.machinerychorus.lifeprogresswallpaper.customPrefs.chrono.DatePreferenceDialogFragment
 
 class WallpaperSettingsFragment : PreferenceFragmentCompat() {
+    val DIALOG_FRAGMENT_TAG = "ChronoPreferenceFragment.DIALOG"
+
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
 //        val context = preferenceManager.context
 //        val screen = preferenceManager.createPreferenceScreen(context)
@@ -57,16 +60,7 @@ class WallpaperSettingsFragment : PreferenceFragmentCompat() {
 
     override fun onDisplayPreferenceDialog(preference: Preference?) {
         var dialogFragment: DialogFragment? = null
-        if (preference is TimeDialogPreference) {
-            val dialogPreference = preference
-            dialogFragment = TimePreferenceDialogFragment
-                .newInstance(
-                    dialogPreference.key,
-                    dialogPreference.isForce12HourPicker,
-                    dialogPreference.isForce24HourPicker,
-                    dialogPreference.customFormat
-                )
-        } else if (preference is DateDialogPreference) {
+        if (preference is DateDialogPreference) {
             val dialogPreference = preference
             dialogFragment = DatePreferenceDialogFragment
                 .newInstance(
@@ -74,11 +68,14 @@ class WallpaperSettingsFragment : PreferenceFragmentCompat() {
                     dialogPreference.minDate,
                     dialogPreference.maxDate,
                     dialogPreference.customFormat
-                )
+                ).apply {
+                    pickerView?.calendarViewShown = false
+                    pickerView?.spinnersShown = true
+                }
         }
         if (dialogFragment != null) {
             dialogFragment.setTargetFragment(this, 0)
-            dialogFragment.show(getParentFragmentManager(), ChronoPreferenceFragment.DIALOG_FRAGMENT_TAG)
+            dialogFragment.show(getParentFragmentManager(), DIALOG_FRAGMENT_TAG)
         } else {
             super.onDisplayPreferenceDialog(preference)
         }

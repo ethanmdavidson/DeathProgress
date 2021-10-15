@@ -1,4 +1,4 @@
-package com.machinerychorus.lifeprogresswallpaper
+package com.machinerychorus.lifeprogresswallpaper.customPrefs
 
 import android.content.Context
 import android.util.AttributeSet

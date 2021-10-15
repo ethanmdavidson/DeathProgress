@@ -52,7 +52,6 @@ dependencies {
     implementation("com.google.android.material:material:1.4.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.3.1")
     implementation("androidx.preference:preference-ktx:1.1.1")
-    implementation("com.github.koji-1009:ChronoDialogPreference:2.1.0")
     implementation("com.github.skydoves:colorpickerpreference:2.0.5")
 
     testImplementation("junit:junit:4.13.2")
