@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.dr1009.app.chronodialogpreference.DateDialogPreference
+        android:key="@string/birthdateKey"
+        android:title="Birth Date"
+        android:defaultValue="1994-05-31" />
+    <com.machinerychorus.lifeprogresswallpaperkotlin.IntegerPreference
+        android:key="@string/expectancyKey"
+        android:title="Life Expectancy"
+        android:defaultValue="85" />
+    <com.skydoves.colorpickerpreference.ColorPickerPreference
+        android:key="@string/bgColorKey"
+        android:title="Background Color"
+        app:preference_attachAlphaSlideBar="false" />
+    <com.skydoves.colorpickerpreference.ColorPickerPreference
+        android:key="@string/fgColorKey"
+        android:title="Foreground Color"
+        app:preference_attachAlphaSlideBar="false" />
+    <com.machinerychorus.lifeprogresswallpaperkotlin.IntegerPreference
+        android:key="@string/progressFontSizeKey"
+        android:title="Progress Font Size"
+        android:defaultValue="240"/>
+    <com.machinerychorus.lifeprogresswallpaperkotlin.IntegerPreference
+        android:key="@string/decimalsKey"
+        android:title="Decimal Places"
+        android:defaultValue="4"/>
+    <EditTextPreference
+        android:key="@string/goalsKey"
+        android:title="Goals"
+        android:hint="Enter your goals, reminders, motivations, etc. here"/>
+    <com.machinerychorus.lifeprogresswallpaperkotlin.IntegerPreference
+        android:key="@string/goalsFontSizeKey"
+        android:title="Goals Font Size"
+        android:defaultValue="75"/>
+</PreferenceScreen>
