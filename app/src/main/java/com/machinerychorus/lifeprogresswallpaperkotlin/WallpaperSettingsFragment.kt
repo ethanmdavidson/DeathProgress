@@ -1,10 +1,10 @@
 package com.machinerychorus.lifeprogresswallpaperkotlin
 
 import android.os.Bundle
-import androidx.preference.EditTextPreference
+import androidx.fragment.app.DialogFragment
+import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
-import com.dr1009.app.chronodialogpreference.DateDialogPreference
-import com.skydoves.colorpickerpreference.ColorPickerPreference
+import com.dr1009.app.chronodialogpreference.*
 
 class WallpaperSettingsFragment : PreferenceFragmentCompat() {
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
@@ -53,5 +53,34 @@ class WallpaperSettingsFragment : PreferenceFragmentCompat() {
 //
 //        preferenceScreen = screen
         setPreferencesFromResource(R.xml.preferences, rootKey)
+    }
+
+    override fun onDisplayPreferenceDialog(preference: Preference?) {
+        var dialogFragment: DialogFragment? = null
+        if (preference is TimeDialogPreference) {
+            val dialogPreference = preference
+            dialogFragment = TimePreferenceDialogFragment
+                .newInstance(
+                    dialogPreference.key,
+                    dialogPreference.isForce12HourPicker,
+                    dialogPreference.isForce24HourPicker,
+                    dialogPreference.customFormat
+                )
+        } else if (preference is DateDialogPreference) {
+            val dialogPreference = preference
+            dialogFragment = DatePreferenceDialogFragment
+                .newInstance(
+                    dialogPreference.key,
+                    dialogPreference.minDate,
+                    dialogPreference.maxDate,
+                    dialogPreference.customFormat
+                )
+        }
+        if (dialogFragment != null) {
+            dialogFragment.setTargetFragment(this, 0)
+            dialogFragment.show(getParentFragmentManager(), ChronoPreferenceFragment.DIALOG_FRAGMENT_TAG)
+        } else {
+            super.onDisplayPreferenceDialog(preference)
+        }
     }
 }
