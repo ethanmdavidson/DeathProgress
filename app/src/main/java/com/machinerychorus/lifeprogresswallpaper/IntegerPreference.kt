@@ -1,4 +1,4 @@
-package com.machinerychorus.lifeprogresswallpaperkotlin
+package com.machinerychorus.lifeprogresswallpaper
 
 import android.content.Context
 import android.util.AttributeSet

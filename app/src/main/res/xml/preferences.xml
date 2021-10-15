@@ -5,7 +5,7 @@
         android:key="@string/birthdateKey"
         android:title="Birth Date"
         android:defaultValue="1994-05-31" />
-    <com.machinerychorus.lifeprogresswallpaperkotlin.IntegerPreference
+    <com.machinerychorus.lifeprogresswallpaper.IntegerPreference
         android:key="@string/expectancyKey"
         android:title="Life Expectancy"
         android:defaultValue="85" />
@@ -17,11 +17,11 @@
         android:key="@string/fgColorKey"
         android:title="Foreground Color"
         app:preference_attachAlphaSlideBar="false" />
-    <com.machinerychorus.lifeprogresswallpaperkotlin.IntegerPreference
+    <com.machinerychorus.lifeprogresswallpaper.IntegerPreference
         android:key="@string/progressFontSizeKey"
         android:title="Progress Font Size"
         android:defaultValue="240"/>
-    <com.machinerychorus.lifeprogresswallpaperkotlin.IntegerPreference
+    <com.machinerychorus.lifeprogresswallpaper.IntegerPreference
         android:key="@string/decimalsKey"
         android:title="Decimal Places"
         android:defaultValue="4"/>
@@ -29,7 +29,7 @@
         android:key="@string/goalsKey"
         android:title="Goals"
         android:hint="Enter your goals, reminders, motivations, etc. here"/>
-    <com.machinerychorus.lifeprogresswallpaperkotlin.IntegerPreference
+    <com.machinerychorus.lifeprogresswallpaper.IntegerPreference
         android:key="@string/goalsFontSizeKey"
         android:title="Goals Font Size"
         android:defaultValue="75"/>

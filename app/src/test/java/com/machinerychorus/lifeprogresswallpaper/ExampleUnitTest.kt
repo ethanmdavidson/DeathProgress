@@ -1,4 +1,4 @@
-package com.machinerychorus.lifeprogresswallpaperkotlin
+package com.machinerychorus.lifeprogresswallpaper
 
 import org.junit.Test
 
