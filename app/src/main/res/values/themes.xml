@@ -22,4 +22,15 @@
     <style name="Theme.LifeProgressWallpaperKotlin.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.LifeProgressWallpaperKotlin.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="SpinnerDatePickerDialog" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="android:datePickerStyle">@style/SpinnerDatePicker</item>
+        <item name="android:background">?attr/colorBackgroundFloating</item>
+        <item name="android:dialogCornerRadius" tools:targetApi="28">4dp</item>
+    </style>
+
+    <style name="SpinnerDatePicker" parent="@android:style/Widget.DatePicker">
+        <item name="android:calendarViewShown">false</item>
+        <item name="android:datePickerMode">spinner</item>
+    </style>
 </resources>

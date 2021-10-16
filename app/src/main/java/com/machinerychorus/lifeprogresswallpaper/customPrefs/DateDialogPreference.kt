@@ -24,6 +24,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 
+import android.app.DatePickerDialog
 import android.content.Context
 import android.content.res.TypedArray
 import android.os.Parcelable
@@ -31,9 +32,7 @@ import android.text.format.DateUtils
 import android.util.AttributeSet
 import androidx.preference.DialogPreference
 import com.machinerychorus.lifeprogresswallpaper.R
-import com.machinerychorus.lifeprogresswallpaper.customPrefs.chrono.ChronoUtil
 import com.machinerychorus.lifeprogresswallpaper.customPrefs.chrono.SavedState
-import java.lang.AssertionError
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
@@ -45,17 +44,16 @@ class DateDialogPreference @JvmOverloads constructor(
     defStyleRes: Int = 0
 ) :
     DialogPreference(context, attrs, defStyleAttr, defStyleRes) {
-    val maxDate: String?
-    val minDate: String?
-    val customFormat: String?
+    private val maxDate: String?
+    private val minDate: String?
+    private val customFormat: String?
     private val mCustomSimpleDateFormat: SimpleDateFormat?
-    var date = Calendar.getInstance()
-        private set
-    var serializedValue: String
-        get() = ChronoUtil.DATE_FORMATTER.format(date.time)
+    private var date: Calendar = Calendar.getInstance()
+    private var serializedValue: String
+        get() = DATE_FORMATTER.format(date.time)
         set(serializedDate) {
             try {
-                date = ChronoUtil.dateToCalendar(ChronoUtil.DATE_FORMATTER.parse(serializedDate))
+                DATE_FORMATTER.parse(serializedDate)?.toCalendar()?.apply {date = this}
             } catch (e: ParseException) {
                 throw AssertionError("Date format is always known and parsable", e)
             }
@@ -67,6 +65,12 @@ class DateDialogPreference @JvmOverloads constructor(
             }
             summary = summary
         }
+
+    private fun Date.toCalendar() : Calendar {
+        val calendar = Calendar.getInstance()
+        calendar.time = this
+        return calendar
+    }
 
     override fun getSummary(): CharSequence {
         mCustomSimpleDateFormat?.apply {
@@ -84,11 +88,7 @@ class DateDialogPreference @JvmOverloads constructor(
     }
 
     override fun onSetInitialValue(defaultValue: Any?) {
-        serializedValue = if (defaultValue == null) {
-            getPersistedString(DEFAULT_DATE)
-        } else {
-            defaultValue as String
-        }
+        serializedValue = getPersistedString((defaultValue as String?) ?: DEFAULT_DATE)
     }
 
     override fun onSaveInstanceState(): Parcelable {
@@ -114,7 +114,8 @@ class DateDialogPreference @JvmOverloads constructor(
     }
 
     companion object {
-        private const val DEFAULT_DATE = "1970-1-1"
+        private val DATE_FORMATTER = SimpleDateFormat("yyyy-MM-dd", Locale.ROOT)
+        const val DEFAULT_DATE = "1994-05-31"
     }
 
     init {
@@ -125,11 +126,41 @@ class DateDialogPreference @JvmOverloads constructor(
         minDate = a.getString(R.styleable.Dialog_Preference_DatePicker_minDate)
         maxDate = a.getString(R.styleable.Dialog_Preference_DatePicker_maxDate)
         customFormat = a.getString(R.styleable.Dialog_Preference_DatePicker_customFormat)
-        mCustomSimpleDateFormat = if (customFormat != null && !customFormat.isEmpty()) {
+        mCustomSimpleDateFormat = if (customFormat != null && customFormat.isNotEmpty()) {
             SimpleDateFormat(customFormat, Locale.getDefault())
         } else {
             null
         }
         a.recycle()
+    }
+
+    fun displayDialog(context: Context){
+        DatePickerDialog(context, R.style.SpinnerDatePickerDialog,
+            { _, year, month, day ->
+                val cal = Calendar.getInstance().apply {
+                    this[Calendar.YEAR] = year
+                    this[Calendar.MONTH] = month
+                    this[Calendar.DAY_OF_MONTH] = day
+                }
+                serializedValue = DATE_FORMATTER.format(cal.time)
+            },
+            date[Calendar.YEAR], date[Calendar.MONTH], date[Calendar.DAY_OF_MONTH]).apply {
+            if (minDate != null) {
+                val date: Date = try {
+                    DATE_FORMATTER.parse(minDate)!!
+                } catch (e: ParseException) {
+                    throw IllegalArgumentException("minDate is not in the correct format", e)
+                }
+                datePicker.minDate = date.time
+            }
+            if (maxDate != null) {
+                val date: Date = try {
+                    DATE_FORMATTER.parse(maxDate)!!
+                } catch (e: ParseException) {
+                    throw IllegalArgumentException("maxDate is not in the correct format", e)
+                }
+                datePicker.maxDate = date.time
+            }
+        }.show()
     }
 }
