@@ -125,7 +125,8 @@ class Wallpaper : WallpaperService() {
             var lineNumber = 0
             val fontHeight = paint.fontMetrics.descent - paint.fontMetrics.ascent
             for (line in goals) {
-                this.drawText(line, 10f,
+                val textWidth = paint.measureText(line)
+                this.drawText(line, (screenWidth-textWidth)/2,
                     statusBarHeight + (0 - paint.fontMetrics.top) + lineNumber * fontHeight,
                     paint
                 )
