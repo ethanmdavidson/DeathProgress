@@ -32,6 +32,8 @@ import android.text.format.DateUtils
 import android.util.AttributeSet
 import androidx.preference.DialogPreference
 import com.machinerychorus.lifeprogresswallpaper.R
+import com.machinerychorus.lifeprogresswallpaper.Wallpaper.Companion.DATE_FORMATTER
+import com.machinerychorus.lifeprogresswallpaper.Wallpaper.Companion.DEFAULT_DATE
 import com.machinerychorus.lifeprogresswallpaper.customPrefs.chrono.SavedState
 import java.text.ParseException
 import java.text.SimpleDateFormat
@@ -111,11 +113,6 @@ class DateDialogPreference @JvmOverloads constructor(
         val myState = state as SavedState
         super.onRestoreInstanceState(myState.superState)
         serializedValue = myState.text ?: ""
-    }
-
-    companion object {
-        private val DATE_FORMATTER = SimpleDateFormat("yyyy-MM-dd", Locale.ROOT)
-        const val DEFAULT_DATE = "1994-05-31"
     }
 
     init {

@@ -3,12 +3,13 @@
     package="com.machinerychorus.lifeprogresswallpaper">
 
     <application
-        android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.LifeProgressWallpaperKotlin">
+        android:theme="@style/Theme.LifeProgressWallpaperKotlin"
+        android:allowBackup="true"
+        android:fullBackupOnly="true">
         <activity
             android:name="com.machinerychorus.lifeprogresswallpaper.SettingsActivity"
             android:exported="true"
@@ -19,6 +20,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <service
+            android:name=".Wallpaper"
+            android:enabled="true"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:permission="android.permission.BIND_WALLPAPER">
+            <intent-filter>
+                <action android:name="android.service.wallpaper.WallpaperService"/>
+            </intent-filter>
+
+            <meta-data
+                android:name="android.service.wallpaper"
+                android:resource="@xml/wallpaper"/>
+        </service>
     </application>
 
 </manifest>

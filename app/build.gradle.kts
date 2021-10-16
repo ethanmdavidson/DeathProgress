@@ -7,8 +7,8 @@ android {
     compileSdk = 30
 
     defaultConfig {
-        applicationId = "com.machinerychorus.lifeprogresswallpaperkotlin"
-        minSdk = 25
+        applicationId = "com.machinerychorus.lifeprogresswallpaper"
+        minSdk = 26
         targetSdk = 30
         versionCode = 9
         versionName = "2.0"
