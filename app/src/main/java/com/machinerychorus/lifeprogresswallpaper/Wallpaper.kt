@@ -23,6 +23,13 @@ class Wallpaper : WallpaperService() {
 
     private inner class WallpaperEngine : Engine(), SharedPreferences.OnSharedPreferenceChangeListener {
         private var lastDrawTime: Long = 0
+
+        init {
+            setOffsetNotificationsEnabled(false)
+            PreferenceManager.getDefaultSharedPreferences(applicationContext)
+                .registerOnSharedPreferenceChangeListener(this)
+        }
+
         override fun onDestroy() {
             //remove preference listener
             PreferenceManager.getDefaultSharedPreferences(applicationContext)
@@ -65,12 +72,6 @@ class Wallpaper : WallpaperService() {
                     surfaceHolder.unlockCanvasAndPost(canvas)
                 }
             }
-        }
-
-        init {
-            setOffsetNotificationsEnabled(false)
-            PreferenceManager.getDefaultSharedPreferences(applicationContext)
-                .registerOnSharedPreferenceChangeListener(this)
         }
 
         fun Canvas.drawFrame() {

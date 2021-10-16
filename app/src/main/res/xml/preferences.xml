@@ -12,12 +12,14 @@
     <com.skydoves.colorpickerpreference.ColorPickerPreference
         android:key="@string/bgColorKey"
         android:title="Background Color"
+        app:default_color="@color/blackAsMySOUUUUUUUULLLL"
         app:preference_attachAlphaSlideBar="false"
         app:preference_dialog_negative="@string/cancel"
         app:preference_dialog_positive="@string/confirm" />
     <com.skydoves.colorpickerpreference.ColorPickerPreference
         android:key="@string/fgColorKey"
         android:title="Foreground Color"
+        app:default_color="@color/wholesomeTeal"
         app:preference_attachAlphaSlideBar="false"
         app:preference_dialog_negative="@string/cancel"
         app:preference_dialog_positive="@string/confirm" />

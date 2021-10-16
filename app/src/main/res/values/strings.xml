@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">LifeProgressWallpaperKotlin</string>
+    <string name="app_name">LifeProgressWallpaper</string>
     <string name="app_pref_header">Life Perspective Wallpaper Settings</string>
     <string name="title_activity_settings">Life Perspective</string>
     <string name="birthdateKey">birthdate</string>
