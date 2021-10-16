@@ -38,7 +38,11 @@
     <com.machinerychorus.lifeprogresswallpaper.customPrefs.IntegerPreference
         android:key="@string/goalsFontSizeKey"
         android:title="Goals Font Size"
-        android:defaultValue="75" />
+        android:defaultValue="75"
+        app:allowDividerBelow="true" />
+    <Preference
+        android:key="emptyPreferenceForSpacing"
+        app:allowDividerAbove="true" />
     <Preference
         android:key="@string/setWallpaperButtonId"
         android:widgetLayout="@layout/set_wallpaper_button" />
