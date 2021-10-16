@@ -1,9 +1,13 @@
 package com.machinerychorus.lifeprogresswallpaper
 
+import android.app.WallpaperManager
+import android.content.ComponentName
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 
 import android.content.SharedPreferences
+import android.view.View
 import androidx.preference.PreferenceManager
 
 class SettingsActivity : AppCompatActivity() {
@@ -33,5 +37,13 @@ class SettingsActivity : AppCompatActivity() {
             applicationContext
         )
         pref.edit().putInt(getString(R.string.statusBarHeightKey), statusBarHeight).apply()
+    }
+
+
+    fun setWallpaper(@Suppress("UNUSED_PARAMETER") view: View) {
+        val intent = Intent(WallpaperManager.ACTION_CHANGE_LIVE_WALLPAPER)
+        intent.putExtra(WallpaperManager.EXTRA_LIVE_WALLPAPER_COMPONENT,
+            ComponentName(this, Wallpaper::class.java))
+        startActivity(intent)
     }
 }

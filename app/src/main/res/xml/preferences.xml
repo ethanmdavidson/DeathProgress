@@ -26,17 +26,20 @@
     <com.machinerychorus.lifeprogresswallpaper.customPrefs.IntegerPreference
         android:key="@string/progressFontSizeKey"
         android:title="Progress Font Size"
-        android:defaultValue="240"/>
+        android:defaultValue="240" />
     <com.machinerychorus.lifeprogresswallpaper.customPrefs.IntegerPreference
         android:key="@string/decimalsKey"
         android:title="Decimal Places"
-        android:defaultValue="4"/>
+        android:defaultValue="4" />
     <EditTextPreference
         android:key="@string/goalsKey"
         android:title="Goals"
-        android:hint="Enter your goals, reminders, motivations, etc. here"/>
+        android:hint="Enter your goals, reminders, motivations, etc. here" />
     <com.machinerychorus.lifeprogresswallpaper.customPrefs.IntegerPreference
         android:key="@string/goalsFontSizeKey"
         android:title="Goals Font Size"
-        android:defaultValue="75"/>
+        android:defaultValue="75" />
+    <Preference
+        android:key="@string/setWallpaperButtonId"
+        android:widgetLayout="@layout/set_wallpaper_button" />
 </PreferenceScreen>
