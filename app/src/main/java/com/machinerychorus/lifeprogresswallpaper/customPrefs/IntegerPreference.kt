@@ -1,6 +1,7 @@
 package com.machinerychorus.lifeprogresswallpaper.customPrefs
 
 import android.content.Context
+import android.text.InputType
 import android.util.AttributeSet
 import android.widget.Toast
 import androidx.preference.EditTextPreference
@@ -10,6 +11,12 @@ import androidx.preference.EditTextPreference
  * only allows integer input.
  */
 class IntegerPreference(context: Context?, attrs: AttributeSet?) : EditTextPreference(context, attrs) {
+    init {
+        super.setOnBindEditTextListener {
+            it.inputType = InputType.TYPE_CLASS_NUMBER
+        }
+    }
+
     override fun setText(text: String) {
         var isValid = false
         try {
