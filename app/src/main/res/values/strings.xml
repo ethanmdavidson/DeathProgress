@@ -11,7 +11,7 @@
     <string name="goalsKey">goals</string>
     <string name="goalsFontSizeKey">goalsFontSize</string>
     <string name="statusBarHeightKey">statusBarHeight</string>
-    <string name="setWallpaperButtonLabel">Click Here to Set this Wallpaper</string>
+    <string name="setWallpaperButtonLabel">Set this Wallpaper</string>
     <string name="setWallpaperButtonId">setWallpaperButton</string>
 
     <string name="cancel">Cancel</string>
