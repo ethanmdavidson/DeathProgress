@@ -6,5 +6,5 @@ dependencyResolutionManagement {
         maven("https://jitpack.io")
     }
 }
-rootProject.name = "LifeProgressWallpaperKotlin"
+rootProject.name = "LifeProgressWallpaper"
 include(":app")
