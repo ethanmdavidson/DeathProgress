@@ -34,7 +34,7 @@
     <EditTextPreference
         android:key="@string/goalsKey"
         android:title="Goals"
-        android:hint="Enter your goals, reminders, motivations, etc. here" />
+        android:hint="@string/goalsHint" />
     <com.machinerychorus.lifeprogresswallpaper.customPrefs.IntegerPreference
         android:key="@string/goalsFontSizeKey"
         android:title="Goals Font Size"

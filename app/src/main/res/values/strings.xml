@@ -9,6 +9,7 @@
     <string name="progressFontSizeKey">progressFontSize</string>
     <string name="decimalsKey">decimals</string>
     <string name="goalsKey">goals</string>
+    <string name="goalsHint">Enter your goals, reminders, motivations, etc. here</string>
     <string name="goalsFontSizeKey">goalsFontSize</string>
     <string name="statusBarHeightKey">statusBarHeight</string>
     <string name="setWallpaperButtonLabel">Set this Wallpaper</string>
