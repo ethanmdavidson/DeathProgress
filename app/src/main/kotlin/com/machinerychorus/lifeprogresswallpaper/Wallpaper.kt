@@ -12,7 +12,8 @@ import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.preference.PreferenceManager
 import java.text.SimpleDateFormat
-import java.time.*
+import java.time.Duration
+import java.time.Instant
 import java.time.temporal.ChronoUnit
 import java.util.*
 
@@ -76,17 +77,17 @@ class Wallpaper : WallpaperService() {
 
         fun Canvas.drawFrame() {
             val pref = PreferenceManager.getDefaultSharedPreferences(applicationContext)
-            val birthdate = DATE_FORMATTER.parse(
-                pref.getString(getString(R.string.birthdateKey), DEFAULT_DATE)!!)!!
-                .toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime()
+            val birthdate = DATE_FORMATTER.parse(pref.getString(getString(R.string.birthdateKey), DEFAULT_DATE)!!)!!.toInstant()
+            val hoursAlive = ChronoUnit.HOURS.between(birthdate, Instant.now())
+            val yearsPref = pref.getString(getString(R.string.expectancyKey), "85")!!
+            val yearsExpectancy = Duration.of((yearsPref.toLong()*365.2425).toLong(), ChronoUnit.DAYS)
+            val hoursExpectancy = ChronoUnit.HOURS.between(birthdate, birthdate.plus(yearsExpectancy))
+            val percentDead = hoursAlive.toFloat() / hoursExpectancy.toFloat()
+
             //get screen width/height from surface because getDesiredMinimumWidth()/Height()
             // doesn't always return the correct values (e.g. 1280x800 tablet returned 1920x1280)
             val screenWidth = surfaceHolder.surfaceFrame.right
             val screenHeight = surfaceHolder.surfaceFrame.bottom
-            val hoursAlive = ChronoUnit.HOURS.between(birthdate, LocalDateTime.now())
-            val yearsExpectancy = pref.getString(getString(R.string.expectancyKey), "85")!!.toLong()
-            val hoursExpectancy = ChronoUnit.HOURS.between(birthdate, birthdate.plusYears(yearsExpectancy))
-            val percentDead = hoursAlive.toFloat() / hoursExpectancy.toFloat()
             val paint = Paint()
             paint.style = Paint.Style.FILL
             paint.color = pref.getInt(
