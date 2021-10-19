@@ -32,8 +32,8 @@ import android.text.format.DateUtils
 import android.util.AttributeSet
 import androidx.preference.DialogPreference
 import com.machinerychorus.lifeprogresswallpaper.R
-import com.machinerychorus.lifeprogresswallpaper.Wallpaper.Companion.DATE_FORMATTER
-import com.machinerychorus.lifeprogresswallpaper.Wallpaper.Companion.DEFAULT_DATE
+import com.machinerychorus.lifeprogresswallpaper.LifeWallpaper.Companion.DATE_FORMATTER
+import com.machinerychorus.lifeprogresswallpaper.LifeWallpaper.Companion.DEFAULT_DATE
 import com.machinerychorus.lifeprogresswallpaper.customPrefs.chrono.SavedState
 import java.text.ParseException
 import java.text.SimpleDateFormat

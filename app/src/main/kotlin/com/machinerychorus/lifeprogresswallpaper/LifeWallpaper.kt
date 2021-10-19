@@ -17,7 +17,7 @@ import java.time.Instant
 import java.time.temporal.ChronoUnit
 import java.util.*
 
-class Wallpaper : WallpaperService() {
+class LifeWallpaper : WallpaperService() {
     override fun onCreateEngine(): Engine {
         return WallpaperEngine()
     }

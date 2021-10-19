@@ -43,7 +43,7 @@ class SettingsActivity : AppCompatActivity() {
     fun setWallpaper(@Suppress("UNUSED_PARAMETER") view: View) {
         val intent = Intent(WallpaperManager.ACTION_CHANGE_LIVE_WALLPAPER)
         intent.putExtra(WallpaperManager.EXTRA_LIVE_WALLPAPER_COMPONENT,
-            ComponentName(this, Wallpaper::class.java))
+            ComponentName(this, LifeWallpaper::class.java))
         startActivity(intent)
     }
 }

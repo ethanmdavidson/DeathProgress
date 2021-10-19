@@ -24,7 +24,7 @@
             </intent-filter>
         </activity>
         <service
-            android:name=".Wallpaper"
+            android:name=".LifeWallpaper"
             android:enabled="true"
             android:exported="true"
             android:label="@string/app_name"
