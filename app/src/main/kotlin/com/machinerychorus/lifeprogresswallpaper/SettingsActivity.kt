@@ -13,10 +13,12 @@ import androidx.preference.PreferenceManager
 class SettingsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        supportFragmentManager
-            .beginTransaction()
-            .replace(android.R.id.content, WallpaperSettingsFragment())
-            .commit()
+        if(savedInstanceState == null) {
+            supportFragmentManager
+                .beginTransaction()
+                .replace(android.R.id.content, WallpaperSettingsFragment())
+                .commit()
+        }
 
         /* The wallpaper service needs to know the height of the status/notification bar so
         that it can avoid drawing the text underneath the status bar (looks bad).
