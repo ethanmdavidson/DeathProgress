@@ -10,8 +10,8 @@ android {
         applicationId = "com.machinerychorus.lifeprogresswallpaper"
         minSdk = 16
         targetSdk = 31
-        versionCode = 12
-        versionName = "2.3"
+        versionCode = 13
+        versionName = "2.3.1"
         multiDexEnabled = true
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -48,10 +48,10 @@ android {
 }
 
 dependencies {
-    implementation("androidx.core:core-ktx:1.6.0")
+    implementation("androidx.core:core-ktx:1.7.0")
     implementation("androidx.appcompat:appcompat:1.3.1")
     implementation("com.google.android.material:material:1.4.0")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.3.1")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.4.0")
     implementation("androidx.preference:preference-ktx:1.1.1")
     implementation("com.github.skydoves:colorpickerpreference:2.0.5")
 
