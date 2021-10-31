@@ -53,7 +53,7 @@ dependencies {
     implementation("com.google.android.material:material:1.4.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.3.1")
     implementation("androidx.preference:preference-ktx:1.1.1")
-    implementation("com.github.skydoves:colorpickerpreference:2.0.5")
+    implementation("com.github.skydoves:colorpickerpreference:2.0.6-SNAPSHOT")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.3")

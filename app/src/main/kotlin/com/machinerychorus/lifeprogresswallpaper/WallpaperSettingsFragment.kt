@@ -7,6 +7,7 @@ import androidx.preference.PreferenceFragmentCompat
 import com.machinerychorus.lifeprogresswallpaper.customPrefs.DateDialogPreference
 import com.machinerychorus.lifeprogresswallpaper.customPrefs.IntegerPreference
 import com.skydoves.colorpickerpreference.ColorPickerPreference
+import com.skydoves.colorpickerview.flag.BubbleFlag
 
 class WallpaperSettingsFragment : PreferenceFragmentCompat() {
 
@@ -31,9 +32,14 @@ class WallpaperSettingsFragment : PreferenceFragmentCompat() {
         val bgColorPref = ColorPickerPreference(context).apply {
             key = getString(R.string.bgColorKey)
             title = "Background Color"
-            //TODO: color picker config has to be passed as a res?
-            R.styleable.ColorPickerPreference_default_color
+            defaultColor = R.color.blackAsMySOUUUUUUUULLLL
+            attachAlphaSlideBar = false
+            positive = getString(R.string.confirm)
+            negative = getString(R.string.cancel)
+            onInit()
+            getColorPickerView().flagView = BubbleFlag(context)
         }
+        screen.addPreference(bgColorPref)
 
         //androidx EditTextPreference doesn't respect the hint attribute in the xml for some reason
         //we set it here to work around that
