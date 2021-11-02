@@ -30,7 +30,7 @@ class SettingsActivity : AppCompatActivity() {
         We default to 100 so that it (hopefully) won't be covered by the status bar even if we don't
             get the real height.
         */
-        var statusBarHeight = 100
+        var statusBarHeight = DEFAULT_STATUS_BAR_HEIGHT
         val resourceId = resources.getIdentifier("status_bar_height", "dimen", "android")
         if (resourceId > 0) {
             statusBarHeight = resources.getDimensionPixelSize(resourceId)

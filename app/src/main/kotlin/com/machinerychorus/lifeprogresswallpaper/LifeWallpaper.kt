@@ -17,6 +17,12 @@ import java.time.Instant
 import java.time.temporal.ChronoUnit
 import java.util.*
 
+const val DEFAULT_EXPECTANCY_YEARS = "85"
+const val DEFAULT_NUM_DECIMALS = "4"
+const val DEFAULT_STATUS_BAR_HEIGHT = 100
+const val DAYS_IN_YEAR = 365.2425
+const val PROGRESS_LABEL_MARGIN = 10f
+
 class LifeWallpaper : WallpaperService() {
     override fun onCreateEngine(): Engine {
         return WallpaperEngine()
@@ -77,10 +83,11 @@ class LifeWallpaper : WallpaperService() {
 
         fun Canvas.drawFrame() {
             val pref = PreferenceManager.getDefaultSharedPreferences(applicationContext)
-            val birthdate = DATE_FORMATTER.parse(pref.getString(getString(R.string.birthdateKey), DEFAULT_DATE)!!)!!.toInstant()
+            val birthdate = DATE_FORMATTER.parse(
+                pref.getString(getString(R.string.birthdateKey), DEFAULT_DATE)!!)!!.toInstant()
             val hoursAlive = ChronoUnit.HOURS.between(birthdate, Instant.now())
-            val yearsPref = pref.getString(getString(R.string.expectancyKey), "85")!!
-            val yearsExpectancy = Duration.of((yearsPref.toLong()*365.2425).toLong(), ChronoUnit.DAYS)
+            val yearsPref = pref.getString(getString(R.string.expectancyKey), DEFAULT_EXPECTANCY_YEARS)!!
+            val yearsExpectancy = Duration.of((yearsPref.toLong()* DAYS_IN_YEAR).toLong(), ChronoUnit.DAYS)
             val hoursExpectancy = ChronoUnit.HOURS.between(birthdate, birthdate.plus(yearsExpectancy))
             val percentDead = hoursAlive.toFloat() / hoursExpectancy.toFloat()
 
@@ -103,22 +110,19 @@ class LifeWallpaper : WallpaperService() {
             )
             this.drawRect(
                 0f, (screenHeight - (screenHeight * percentDead).toInt()).toFloat(),
-                screenWidth.toFloat(), screenHeight.toFloat(), paint
-            )
+                screenWidth.toFloat(), screenHeight.toFloat(), paint)
             paint.textSize =
                 pref.getString(getString(R.string.progressFontSizeKey), "240")!!.toFloat()
-            val progressLabel = String.format(
-                Locale.US,
-                "%." + pref.getString(getString(R.string.decimalsKey), "4") + "f%%",
-                percentDead * 100f
-            )
-            this.drawText(progressLabel, 10f,
-                (screenHeight - (screenHeight * percentDead).toInt() - 10).toFloat(),
-                paint
-            )
+            val progressLabel = String.format(Locale.US,
+                "%." + pref.getString(getString(R.string.decimalsKey), DEFAULT_NUM_DECIMALS) + "f%%",
+                percentDead * @Suppress("MagicNumber") 100f)
+            this.drawText(progressLabel, PROGRESS_LABEL_MARGIN,
+                (screenHeight - (screenHeight * percentDead) - PROGRESS_LABEL_MARGIN),
+                paint)
 
             //draw goals text
-            val statusBarHeight = pref.getInt(getString(R.string.statusBarHeightKey), 100)
+            val statusBarHeight = pref.getInt(getString(R.string.statusBarHeightKey),
+                DEFAULT_STATUS_BAR_HEIGHT)
             paint.textSize =
                 pref.getString(getString(R.string.goalsFontSizeKey), "75")!!.toFloat()
             val goals = pref.getString(getString(R.string.goalsKey), "")!!
