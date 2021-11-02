@@ -65,15 +65,15 @@ dependencies {
 
 detekt {
     buildUponDefaultConfig = true // preconfigure defaults
-    allRules = false // activate all available (even unstable) rules.
+    allRules = true // activate all available (even unstable) rules.
     //config = files("$projectDir/config/detekt.yml") // point to your custom config defining rules to run, overwriting default behavior
     //baseline = file("$projectDir/config/baseline.xml") // a way of suppressing issues before introducing detekt
 
     reports {
-        html.enabled = true // observe findings in your browser with structure and code snippets
-        //xml.enabled = true // checkstyle like format mainly for integrations like Jenkins
-        txt.enabled = true // similar to the console output, contains issue signature to manually edit baseline files
-        sarif.enabled = true // standardized SARIF format (https://sarifweb.azurewebsites.net/) to support integrations with Github Code Scanning
+        html.enabled = false
+        xml.enabled = false
+        txt.enabled = false
+        sarif.enabled = true
     }
 }
 
