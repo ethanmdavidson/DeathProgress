@@ -12,3 +12,8 @@ This app requests permission to change your wallpaper in order to make
 the "Set this wallpaper" button work. If this permission is denied, 
 all other functionality will continue working, and you will still be
 able to select this wallpaper in the system settings.
+
+=== License and Source Code ===
+
+The source code for this app has been released into the public domain,
+and can be found at https://github.com/ethanmdavidson/DeathProgress
