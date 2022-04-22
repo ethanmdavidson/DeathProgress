@@ -16,6 +16,7 @@ Uses [ColorPickerPreference by skydoves](https://github.com/skydoves/ColorPicker
 - [Your Real Biological Clock Is You're Going to Die - Tom Scocca](https://hmmdaily.com/2018/10/18/your-real-biological-clock-is-youre-going-to-die/)
 - [Don't lose your marbles! - John Maxwell](https://www.johnmaxwell.com/blog/dont-lose-your-marbles/)
 - [What Are You Doing With Your Life? - Kurzgesagt](https://www.youtube.com/watch?v=JXeJANDKwDc)
+- [Life is Short - Paul Graham](http://paulgraham.com/vb.html)
 
 > Come to terms with death, thereafter anything is possible
 - Albert Camus
