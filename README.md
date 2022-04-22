@@ -17,5 +17,8 @@ Uses [ColorPickerPreference by skydoves](https://github.com/skydoves/ColorPicker
 - [Don't lose your marbles! - John Maxwell](https://www.johnmaxwell.com/blog/dont-lose-your-marbles/)
 - [What Are You Doing With Your Life? - Kurzgesagt](https://www.youtube.com/watch?v=JXeJANDKwDc)
 
+> Come to terms with death, thereafter anything is possible
+- Albert Camus
+
 > Death destroys a man: the idea of Death saves him. Behind the coffins and the skeletons that stay the vulgar mind lies something so immense that all that is great in us responds to it. Men of the world may recoil from the charnel-house that they will one day enter, but Love knows better. Death is his foe, but his peer, and in their age-long struggle the thews of Love have been strengthened, and his vision cleared, until there is no one who can stand against him.
 - E.M. Forster
