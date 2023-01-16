@@ -1,16 +1,16 @@
 plugins {
     id("com.android.application")
     id("kotlin-android")
-    id("io.gitlab.arturbosch.detekt").version("1.18.1")
+    id("io.gitlab.arturbosch.detekt").version("1.22.0")
 }
 
 android {
-    compileSdk = 31
+    compileSdk = 33
 
     defaultConfig {
         applicationId = "com.machinerychorus.lifeprogresswallpaper"
         minSdk = 16
-        targetSdk = 31
+        targetSdk = 33
         versionCode = 13
         versionName = "2.3.1"
         multiDexEnabled = true
@@ -34,40 +34,39 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
         isCoreLibraryDesugaringEnabled = true
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
     packagingOptions {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+    namespace = "com.machinerychorus.lifeprogresswallpaper"
 }
 
 dependencies {
-    implementation("androidx.core:core-ktx:1.7.0")
-    implementation("androidx.appcompat:appcompat:1.3.1")
-    implementation("com.google.android.material:material:1.4.0")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.4.0")
-    implementation("androidx.preference:preference-ktx:1.1.1")
-    implementation("com.github.skydoves:colorpickerpreference:2.0.5")
+    implementation("androidx.core:core-ktx:1.9.0")
+    implementation("androidx.appcompat:appcompat:1.6.0")
+    implementation("com.google.android.material:material:1.7.0")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.5.1")
+    implementation("androidx.preference:preference-ktx:1.2.0")
+    implementation("com.github.skydoves:colorpickerpreference:2.0.6")
 
     testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.3")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
+    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
-    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.5")
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.0")
 }
 
 detekt {
     buildUponDefaultConfig = true // preconfigure defaults
     allRules = true // activate all available (even unstable) rules.
-    //config = files("$projectDir/config/detekt.yml") // point to your custom config defining rules to run, overwriting default behavior
-    //baseline = file("$projectDir/config/baseline.xml") // a way of suppressing issues before introducing detekt
 
     reports {
         html.enabled = false
@@ -79,5 +78,5 @@ detekt {
 
 tasks.withType<io.gitlab.arturbosch.detekt.Detekt>().configureEach {
     // Target version of the generated JVM bytecode. It is used for type resolution.
-    jvmTarget = "1.8"
+    jvmTarget = "11"
 }

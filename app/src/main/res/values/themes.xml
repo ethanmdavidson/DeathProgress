@@ -31,6 +31,6 @@
 
     <style name="SpinnerDatePicker" parent="@android:style/Widget.DatePicker">
         <item name="android:calendarViewShown">false</item>
-        <item name="android:datePickerMode">spinner</item>
+        <item tools:targetApi="21" name="android:datePickerMode">spinner</item>
     </style>
 </resources>

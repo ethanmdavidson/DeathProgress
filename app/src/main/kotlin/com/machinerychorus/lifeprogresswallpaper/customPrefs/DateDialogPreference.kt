@@ -57,7 +57,7 @@ class DateDialogPreference @JvmOverloads constructor(
             try {
                 DATE_FORMATTER.parse(serializedDate)?.toCalendar()?.apply {date = this}
             } catch (e: ParseException) {
-                throw AssertionError("Date format is always known and parsable", e)
+                throw IllegalArgumentException("Date format is not parsable", e)
             }
             val wasBlocking = shouldDisableDependents()
             persistString(serializedDate)
@@ -95,7 +95,7 @@ class DateDialogPreference @JvmOverloads constructor(
 
     override fun onSaveInstanceState(): Parcelable {
         val superState = super.onSaveInstanceState()
-        if (isPersistent) {
+        if (isPersistent && superState != null) {
             // No need to save instance state since it's persistent
             return superState
         }

@@ -10,17 +10,17 @@ import androidx.preference.EditTextPreference
  * A custom preference object. Works the same as a normal EditTextPreference, but
  * only allows integer input.
  */
-class IntegerPreference(context: Context?, attrs: AttributeSet?) : EditTextPreference(context, attrs) {
+class IntegerPreference(context: Context, attrs: AttributeSet?) : EditTextPreference(context, attrs) {
     init {
         super.setOnBindEditTextListener {
             it.inputType = InputType.TYPE_CLASS_NUMBER
         }
     }
 
-    override fun setText(text: String) {
+    override fun setText(text: String?) {
         var isValid = false
         try {
-            if (text.toInt() >= 0) {
+            if (text != null && text.toInt() >= 0) {
                 isValid = true
             }
         } catch (ignored: NumberFormatException) {

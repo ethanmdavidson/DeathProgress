@@ -17,7 +17,7 @@ class WallpaperSettingsFragment : PreferenceFragmentCompat() {
         textPref?.setOnBindEditTextListener { editText -> editText.setHint(R.string.goalsHint) }
     }
 
-    override fun onDisplayPreferenceDialog(preference: Preference?) {
+    override fun onDisplayPreferenceDialog(preference: Preference) {
         if (preference is DateDialogPreference) {
             preference.displayDialog(requireContext())
         } else {
