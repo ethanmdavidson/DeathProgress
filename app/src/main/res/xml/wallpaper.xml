@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<wallpaper
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:thumbnail="@mipmap/ic_launcher"
-    android:settingsActivity="com.machinerychorus.lifeprogresswallpaper.SettingsActivity"/>
+<wallpaper xmlns:android="http://schemas.android.com/apk/res/android"
+	android:settingsActivity="com.machinerychorus.lifeprogresswallpaper.SettingsActivity"
+	android:thumbnail="@mipmap/ic_launcher" />

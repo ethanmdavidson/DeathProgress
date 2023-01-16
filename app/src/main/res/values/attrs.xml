@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="Dialog_Preference_ChronoPicker">
-        <attr name="customFormat" format="string" />
-    </declare-styleable>
+	<declare-styleable name="Dialog_Preference_ChronoPicker">
+		<attr name="customFormat" format="string" />
+	</declare-styleable>
 
-    <declare-styleable name="Dialog_Preference_DatePicker">
-        <attr name="minDate" format="string" />
-        <attr name="maxDate" format="string" />
-        <attr name="customFormat" />
-    </declare-styleable>
+	<declare-styleable name="Dialog_Preference_DatePicker">
+		<attr name="minDate" format="string" />
+		<attr name="maxDate" format="string" />
+		<attr name="customFormat" />
+	</declare-styleable>
 </resources>

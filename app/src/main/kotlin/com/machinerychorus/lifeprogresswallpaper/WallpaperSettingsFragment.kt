@@ -49,11 +49,11 @@ class WallpaperSettingsFragment : PreferenceFragmentCompat() {
         preferenceScreen = screen
     }
 
-    override fun onDisplayPreferenceDialog(preference: Preference?) {
-        if (preference is DateDialogPreference) {
-            preference.displayDialog(requireContext())
-        } else {
-            super.onDisplayPreferenceDialog(preference)
-        }
-    }
+	override fun onDisplayPreferenceDialog(preference: Preference) {
+		if (preference is DateDialogPreference) {
+			preference.displayDialog(requireContext())
+		} else {
+			super.onDisplayPreferenceDialog(preference)
+		}
+	}
 }

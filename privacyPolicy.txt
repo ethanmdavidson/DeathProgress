@@ -1,0 +1,19 @@
+=== Personal Information ===
+
+This app does not collect any personal information and does not contain 
+any tracking. No information is sent to the developers except for the 
+information collected by google (e.g. crash reports). The app only saves 
+your preferences on the local device. This app does not require a
+license or internet connection.
+
+=== Required Permissions ===
+
+This app requests permission to change your wallpaper in order to make
+the "Set this wallpaper" button work. If this permission is denied, 
+all other functionality will continue working, and you will still be
+able to select this wallpaper in the system settings.
+
+=== License and Source Code ===
+
+The source code for this app has been released into the public domain,
+and can be found at https://github.com/ethanmdavidson/DeathProgress
