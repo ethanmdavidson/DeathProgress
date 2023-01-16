@@ -1,20 +1,20 @@
 <resources>
-    <string name="app_name">LifeProgressWallpaper</string>
-    <string name="app_pref_header">Life Perspective Wallpaper Settings</string>
-    <string name="title_activity_settings">Life Perspective</string>
-    <string name="birthdateKey">birthdate</string>
-    <string name="bgColorKey">bgColor</string>
-    <string name="fgColorKey">fgColor</string>
-    <string name="expectancyKey">expectancy</string>
-    <string name="progressFontSizeKey">progressFontSize</string>
-    <string name="decimalsKey">decimals</string>
-    <string name="goalsKey">goals</string>
-    <string name="goalsHint">Enter your goals, reminders, motivations, etc. here</string>
-    <string name="goalsFontSizeKey">goalsFontSize</string>
-    <string name="statusBarHeightKey">statusBarHeight</string>
-    <string name="setWallpaperButtonLabel">Set this Wallpaper</string>
-    <string name="setWallpaperButtonId">setWallpaperButton</string>
+	<string name="app_name">LifeProgressWallpaper</string>
+	<string name="app_pref_header">Life Perspective Wallpaper Settings</string>
+	<string name="title_activity_settings">Life Perspective</string>
+	<string name="birthdateKey">birthdate</string>
+	<string name="bgColorKey">bgColor</string>
+	<string name="fgColorKey">fgColor</string>
+	<string name="expectancyKey">expectancy</string>
+	<string name="progressFontSizeKey">progressFontSize</string>
+	<string name="decimalsKey">decimals</string>
+	<string name="goalsKey">goals</string>
+	<string name="goalsHint">Enter your goals, reminders, motivations, etc. here</string>
+	<string name="goalsFontSizeKey">goalsFontSize</string>
+	<string name="statusBarHeightKey">statusBarHeight</string>
+	<string name="setWallpaperButtonLabel">Set this Wallpaper</string>
+	<string name="setWallpaperButtonId">setWallpaperButton</string>
 
-    <string name="cancel">Cancel</string>
-    <string name="confirm">Confirm</string>
+	<string name="cancel">Cancel</string>
+	<string name="confirm">Confirm</string>
 </resources>

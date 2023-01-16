@@ -30,29 +30,29 @@ import android.os.Parcelable.Creator
 import androidx.preference.Preference
 
 internal class SavedState : Preference.BaseSavedState {
-    var text: String? = null
+	var text: String? = null
 
-    constructor(source: Parcel) : super(source) {
-        text = source.readString()
-    }
+	constructor(source: Parcel) : super(source) {
+		text = source.readString()
+	}
 
-    constructor(superState: Parcelable?) : super(superState)
+	constructor(superState: Parcelable?) : super(superState)
 
-    override fun writeToParcel(dest: Parcel, flags: Int) {
-        super.writeToParcel(dest, flags)
-        dest.writeString(text)
-    }
+	override fun writeToParcel(dest: Parcel, flags: Int) {
+		super.writeToParcel(dest, flags)
+		dest.writeString(text)
+	}
 
-    companion object {
-        @JvmField
-        val CREATOR: Creator<SavedState> = object : Creator<SavedState> {
-            override fun createFromParcel(`in`: Parcel): SavedState {
-                return SavedState(`in`)
-            }
+	companion object {
+		@JvmField
+		val CREATOR: Creator<SavedState> = object : Creator<SavedState> {
+			override fun createFromParcel(`in`: Parcel): SavedState {
+				return SavedState(`in`)
+			}
 
-            override fun newArray(size: Int): Array<SavedState?> {
-                return arrayOfNulls(size)
-            }
-        }
-    }
+			override fun newArray(size: Int): Array<SavedState?> {
+				return arrayOfNulls(size)
+			}
+		}
+	}
 }
