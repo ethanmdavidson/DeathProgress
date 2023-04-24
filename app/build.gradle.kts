@@ -41,7 +41,7 @@ android {
 	kotlinOptions {
 		jvmTarget = "11"
 	}
-	packagingOptions {
+	packaging {
 		resources {
 			excludes += "/META-INF/{AL2.0,LGPL2.1}"
 		}
@@ -50,10 +50,10 @@ android {
 }
 
 dependencies {
-	implementation("androidx.core:core-ktx:1.9.0")
-	implementation("androidx.appcompat:appcompat:1.6.0")
-	implementation("com.google.android.material:material:1.7.0")
-	implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.5.1")
+	implementation("androidx.core:core-ktx:1.10.0")
+	implementation("androidx.appcompat:appcompat:1.6.1")
+	implementation("com.google.android.material:material:1.8.0")
+	implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
 	implementation("androidx.preference:preference-ktx:1.2.0")
 	implementation("com.github.skydoves:colorpickerpreference:2.0.6")
 
@@ -61,22 +61,21 @@ dependencies {
 	androidTestImplementation("androidx.test.ext:junit:1.1.5")
 	androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
-	coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.0")
+	coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.3")
 }
 
 detekt {
 	buildUponDefaultConfig = true // preconfigure defaults
 	allRules = true // activate all available (even unstable) rules.
-
-	reports {
-		html.enabled = false
-		xml.enabled = false
-		txt.enabled = false
-		sarif.enabled = true
-	}
 }
 
 tasks.withType<io.gitlab.arturbosch.detekt.Detekt>().configureEach {
 	// Target version of the generated JVM bytecode. It is used for type resolution.
 	jvmTarget = "11"
+	reports {
+		html.required.set(false)
+		xml.required.set(false)
+		txt.required.set(false)
+		sarif.required.set(true)
+	}
 }
