@@ -15,21 +15,19 @@ class WallpaperSettingsFragment : PreferenceFragmentCompat() {
         val context = preferenceManager.context
         val screen = preferenceManager.createPreferenceScreen(context)
 
-        val birthDatePref = DateDialogPreference(context).apply {
+		screen.addPreference(DateDialogPreference(context).apply {
             key = getString(R.string.birthdateKey)
             title = "Birth Date"
             setDefaultValue("1994-05-31")
-        }
-        screen.addPreference(birthDatePref)
+        })
 
-        val expectancyPref = IntegerPreference(context).apply {
+		screen.addPreference(IntegerPreference(context).apply {
             key = getString(R.string.expectancyKey)
             title = "Life Expectancy"
             setDefaultValue("85")
-        }
-        screen.addPreference(expectancyPref)
+        })
 
-        val bgColorPref = ColorPickerPreference(context).apply {
+		screen.addPreference(ColorPickerPreference(context).apply {
             key = getString(R.string.bgColorKey)
             title = "Background Color"
             defaultColor = R.color.blackAsMySOUUUUUUUULLLL
@@ -38,13 +36,48 @@ class WallpaperSettingsFragment : PreferenceFragmentCompat() {
             negative = getString(R.string.cancel)
             onInit()
             getColorPickerView().flagView = BubbleFlag(context)
-        }
-        screen.addPreference(bgColorPref)
+        })
 
-        //androidx EditTextPreference doesn't respect the hint attribute in the xml for some reason
-        //we set it here to work around that
-        val textPref = findPreference<EditTextPreference>(getString(R.string.goalsKey))
-        textPref?.setOnBindEditTextListener { editText -> editText.setHint(R.string.goalsHint) }
+		screen.addPreference(ColorPickerPreference(context).apply {
+			key = getString(R.string.fgColorKey)
+			title = "Foreground Color"
+			defaultColor = R.color.wholesomeTeal
+			attachAlphaSlideBar = false
+			positive = getString(R.string.confirm)
+			negative = getString(R.string.cancel)
+			onInit()
+			getColorPickerView().flagView = BubbleFlag(context)
+		})
+
+		screen.addPreference(IntegerPreference(context).apply {
+			key = getString(R.string.progressFontSizeKey)
+			title = "Progress Font Size"
+			setDefaultValue("240")
+		})
+
+		screen.addPreference(IntegerPreference(context).apply {
+			key = getString(R.string.decimalsKey)
+			title = "Decimal Places"
+			setDefaultValue("4")
+		})
+
+		screen.addPreference(EditTextPreference(context).apply {
+			key = getString(R.string.goalsKey)
+			title = "Goals"
+			//Not sure what's the right way to set the hint, but this seems to work
+			setOnBindEditTextListener { editText -> editText.setHint(R.string.goalsHint) }
+		})
+
+		screen.addPreference(IntegerPreference(context).apply {
+			key = getString(R.string.goalsFontSizeKey)
+			title = "Goals Font Size"
+			setDefaultValue("75")
+		})
+
+		screen.addPreference(Preference(context).apply {
+			key = getString(R.string.setWallpaperButtonId)
+			widgetLayoutResource = R.layout.set_wallpaper_button
+		})
 
         preferenceScreen = screen
     }
