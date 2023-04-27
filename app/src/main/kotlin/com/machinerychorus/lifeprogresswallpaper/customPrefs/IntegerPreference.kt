@@ -10,7 +10,7 @@ import androidx.preference.EditTextPreference
  * A custom preference object. Works the same as a normal EditTextPreference, but
  * only allows integer input.
  */
-class IntegerPreference(context: Context, attrs: AttributeSet?) :
+class IntegerPreference(context: Context, attrs: AttributeSet? = null) :
 	EditTextPreference(context, attrs) {
 	init {
 		super.setOnBindEditTextListener {
