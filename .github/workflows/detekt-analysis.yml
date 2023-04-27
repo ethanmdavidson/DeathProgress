@@ -1,5 +1,4 @@
-# This workflow performs a static analysis of your Kotlin source code using
-# Detekt.
+# This workflow performs a static analysis of your Kotlin source code using Detekt.
 #
 # Scans are triggered:
 # 1. On every push to default and protected branches
@@ -10,15 +9,10 @@
 name: Scan with Detekt
 
 on:
-  # Triggers the workflow on push or pull request events but only for default and protected branches
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-  schedule:
-     - cron: '44 3 * * 1'
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 jobs:
@@ -28,6 +22,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+
+    - uses: actions/setup-java@v3
+      with:
+        distribution: 'temurin'
+        java-version: '17'
 
     - name: Setup Gradle
       uses: gradle/gradle-build-action@v2
