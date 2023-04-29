@@ -37,7 +37,9 @@ import com.machinerychorus.lifeprogresswallpaper.R
 import com.machinerychorus.lifeprogresswallpaper.customPrefs.chrono.SavedState
 import java.text.ParseException
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Calendar
+import java.util.Date
+import java.util.Locale
 
 class DateDialogPreference @JvmOverloads constructor(
 	context: Context,

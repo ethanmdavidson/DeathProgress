@@ -107,7 +107,8 @@ class LifeWallpaper : WallpaperService() {
 				0f, (screenHeight - (screenHeight * percentDead).toInt()).toFloat(),
 				screenWidth.toFloat(), screenHeight.toFloat(), paint
 			)
-			paint.textSize = pref.getString(getString(R.string.progressFontSizeKey), "240")!!.toFloat()
+			paint.textSize =
+				pref.getString(getString(R.string.progressFontSizeKey), "240")!!.toFloat()
 			val progressLabel = String.format(
 				Locale.US,
 				"%." +
@@ -127,7 +128,8 @@ class LifeWallpaper : WallpaperService() {
 				DEFAULT_STATUS_BAR_HEIGHT
 			)
 			paint.textSize = pref.getString(getString(R.string.goalsFontSizeKey), "75")!!.toFloat()
-			val goals = pref.getString(getString(R.string.goalsKey), "")!!.split("\n").toTypedArray()
+			val goals =
+				pref.getString(getString(R.string.goalsKey), "")!!.split("\n").toTypedArray()
 			var lineNumber = 0
 			val fontHeight = paint.fontMetrics.descent - paint.fontMetrics.ascent
 			for (line in goals) {

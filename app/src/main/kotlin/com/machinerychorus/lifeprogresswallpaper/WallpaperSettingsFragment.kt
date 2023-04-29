@@ -11,32 +11,32 @@ import com.skydoves.colorpickerview.flag.BubbleFlag
 
 class WallpaperSettingsFragment : PreferenceFragmentCompat() {
 
-    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-        val context = preferenceManager.context
-        val screen = preferenceManager.createPreferenceScreen(context)
+	override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
+		val context = preferenceManager.context
+		val screen = preferenceManager.createPreferenceScreen(context)
 
 		screen.addPreference(DateDialogPreference(context).apply {
-            key = getString(R.string.birthdateKey)
-            title = "Birth Date"
-            setDefaultValue("1994-05-31")
-        })
+			key = getString(R.string.birthdateKey)
+			title = "Birth Date"
+			setDefaultValue("1994-05-31")
+		})
 
 		screen.addPreference(IntegerPreference(context).apply {
-            key = getString(R.string.expectancyKey)
-            title = "Life Expectancy"
-            setDefaultValue("85")
-        })
+			key = getString(R.string.expectancyKey)
+			title = "Life Expectancy"
+			setDefaultValue("85")
+		})
 
 		screen.addPreference(ColorPickerPreference(context).apply {
-            key = getString(R.string.bgColorKey)
-            title = "Background Color"
-            defaultColor = R.color.blackAsMySOUUUUUUUULLLL
-            attachAlphaSlideBar = false
-            positive = getString(R.string.confirm)
-            negative = getString(R.string.cancel)
-            onInit()
-            getColorPickerView().flagView = BubbleFlag(context)
-        })
+			key = getString(R.string.bgColorKey)
+			title = "Background Color"
+			defaultColor = R.color.blackAsMySOUUUUUUUULLLL
+			attachAlphaSlideBar = false
+			positive = getString(R.string.confirm)
+			negative = getString(R.string.cancel)
+			onInit()
+			getColorPickerView().flagView = BubbleFlag(context)
+		})
 
 		screen.addPreference(ColorPickerPreference(context).apply {
 			key = getString(R.string.fgColorKey)
@@ -79,8 +79,8 @@ class WallpaperSettingsFragment : PreferenceFragmentCompat() {
 			widgetLayoutResource = R.layout.set_wallpaper_button
 		})
 
-        preferenceScreen = screen
-    }
+		preferenceScreen = screen
+	}
 
 	override fun onDisplayPreferenceDialog(preference: Preference) {
 		if (preference is DateDialogPreference) {
