@@ -94,23 +94,15 @@ class LifeWallpaper : WallpaperService() {
 
 			// Draw background color across whole screen
 			paint.style = Paint.Style.FILL
-			paint.color = pref.getInt(
-				getString(R.string.bgColorKey), ContextCompat.getColor(
-					applicationContext, R.color.wholesomeTeal
-				)
-			)
+			paint.color = getBackgroundColor(pref)
 			this.drawRect(0f, 0f, screenWidth.toFloat(), screenHeight.toFloat(), paint)
 
 			// Draw foreground color across part of screen corresponding to progress
 			val reverse = pref.getBoolean(getString(R.string.reverseKey), false)
-			paint.color = pref.getInt(
-				getString(R.string.fgColorKey), ContextCompat.getColor(
-					applicationContext, R.color.blackAsMySOUUUUUUUULLLL
-				)
-			)
+			paint.color = getForegroundColor(pref)
 			var top = (screenHeight - (screenHeight * percentDead).toInt()).toFloat()
 			var bottom = screenHeight.toFloat()
-			if(reverse) {
+			if (reverse) {
 				bottom = top
 				top = 0f
 			}
@@ -121,17 +113,21 @@ class LifeWallpaper : WallpaperService() {
 			// Draw progress text at edge of progress bar
 			paint.textSize =
 				pref.getString(getString(R.string.progressFontSizeKey), "240")!!.toFloat()
+			var progressText = percentDead * @Suppress("MagicNumber") 100f
+			if (reverse) {
+				progressText = (1 - percentDead) * @Suppress("MagicNumber") 100f
+			}
 			val progressLabel = String.format(
 				Locale.US,
-				"%." +
-					pref.getString(getString(R.string.decimalsKey), DEFAULT_NUM_DECIMALS) +
-					"f%%",
-				percentDead * @Suppress("MagicNumber") 100f
+				"%." + pref.getString(
+					getString(R.string.decimalsKey),
+					DEFAULT_NUM_DECIMALS
+				) + "f%%",
+				progressText
 			)
 			var textBaseline = (screenHeight - (screenHeight * percentDead) - PROGRESS_LABEL_MARGIN)
-			if(reverse){
-				val progFontHeight = paint.fontMetrics.descent - paint.fontMetrics.ascent
-				textBaseline += progFontHeight
+			if (reverse) {
+				textBaseline -= paint.fontMetrics.ascent
 			}
 			this.drawText(
 				progressLabel, PROGRESS_LABEL_MARGIN,
@@ -140,6 +136,9 @@ class LifeWallpaper : WallpaperService() {
 			)
 
 			//draw goals text
+			if (reverse) {
+				paint.color = getBackgroundColor(pref)
+			}
 			val statusBarHeight = pref.getInt(
 				getString(R.string.statusBarHeightKey),
 				DEFAULT_STATUS_BAR_HEIGHT
@@ -174,19 +173,27 @@ class LifeWallpaper : WallpaperService() {
 			return hoursAlive.toFloat() / hoursExpectancy.toFloat()
 		}
 
-		@RequiresApi(Build.VERSION_CODES.O_MR1)
-		override fun onComputeColors(): WallpaperColors {
-			val pref = PreferenceManager.getDefaultSharedPreferences(applicationContext)
-			val primary = pref.getInt(
+		private fun getBackgroundColor(pref: SharedPreferences): Int {
+			return pref.getInt(
 				getString(R.string.bgColorKey), ContextCompat.getColor(
 					applicationContext, R.color.wholesomeTeal
 				)
 			)
-			val secondary = pref.getInt(
+		}
+
+		private fun getForegroundColor(pref: SharedPreferences): Int {
+			return pref.getInt(
 				getString(R.string.fgColorKey), ContextCompat.getColor(
 					applicationContext, R.color.blackAsMySOUUUUUUUULLLL
 				)
 			)
+		}
+
+		@RequiresApi(Build.VERSION_CODES.O_MR1)
+		override fun onComputeColors(): WallpaperColors {
+			val pref = PreferenceManager.getDefaultSharedPreferences(applicationContext)
+			val primary = getBackgroundColor(pref)
+			val secondary = getForegroundColor(pref)
 			return WallpaperColors(Color.valueOf(primary), Color.valueOf(secondary), null)
 		}
 	}

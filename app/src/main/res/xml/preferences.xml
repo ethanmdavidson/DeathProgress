@@ -34,7 +34,7 @@
 	<CheckBoxPreference
 		android:defaultValue="false"
 		android:key="@string/reverseKey"
-		android:title="Reverse" />
+		android:title="Show Remaining instead of Elapsed" />
 	<EditTextPreference
 		android:hint="@string/goalsHint"
 		android:key="@string/goalsKey"
