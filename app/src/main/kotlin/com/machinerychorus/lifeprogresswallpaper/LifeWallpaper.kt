@@ -28,6 +28,7 @@ class LifeWallpaper : WallpaperService() {
 		return WallpaperEngine()
 	}
 
+	@Suppress("TooManyFunctions") // eh, whatever
 	private inner class WallpaperEngine : Engine(),
 		SharedPreferences.OnSharedPreferenceChangeListener {
 		private var lastDrawTime: Long = 0
@@ -82,6 +83,7 @@ class LifeWallpaper : WallpaperService() {
 			}
 		}
 
+		@Suppress("LongMethod") // I guess I should refactor this, but don't feel like it right now
 		fun Canvas.drawFrame() {
 			val pref = PreferenceManager.getDefaultSharedPreferences(applicationContext)
 			val percentDead = getPercentDead(pref)
