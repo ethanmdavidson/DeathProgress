@@ -14,7 +14,7 @@
 	<string name="statusBarHeightKey">statusBarHeight</string>
 	<string name="setWallpaperButtonLabel">Set this Wallpaper</string>
 	<string name="setWallpaperButtonId">setWallpaperButton</string>
-
+	<string name="reverseKey">reverse</string>
 	<string name="cancel">Cancel</string>
 	<string name="confirm">Confirm</string>
 </resources>

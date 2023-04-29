@@ -91,6 +91,8 @@ class LifeWallpaper : WallpaperService() {
 			val screenWidth = surfaceHolder.surfaceFrame.right
 			val screenHeight = surfaceHolder.surfaceFrame.bottom
 			val paint = Paint()
+
+			// Draw background color across whole screen
 			paint.style = Paint.Style.FILL
 			paint.color = pref.getInt(
 				getString(R.string.bgColorKey), ContextCompat.getColor(
@@ -98,15 +100,25 @@ class LifeWallpaper : WallpaperService() {
 				)
 			)
 			this.drawRect(0f, 0f, screenWidth.toFloat(), screenHeight.toFloat(), paint)
+
+			// Draw foreground color across part of screen corresponding to progress
+			val reverse = pref.getBoolean(getString(R.string.reverseKey), false)
 			paint.color = pref.getInt(
 				getString(R.string.fgColorKey), ContextCompat.getColor(
 					applicationContext, R.color.blackAsMySOUUUUUUUULLLL
 				)
 			)
+			var top = (screenHeight - (screenHeight * percentDead).toInt()).toFloat()
+			var bottom = screenHeight.toFloat()
+			if(reverse) {
+				bottom = top
+				top = 0f
+			}
 			this.drawRect(
-				0f, (screenHeight - (screenHeight * percentDead).toInt()).toFloat(),
-				screenWidth.toFloat(), screenHeight.toFloat(), paint
+				0f, top, screenWidth.toFloat(), bottom, paint
 			)
+
+			// Draw progress text at edge of progress bar
 			paint.textSize =
 				pref.getString(getString(R.string.progressFontSizeKey), "240")!!.toFloat()
 			val progressLabel = String.format(
@@ -116,9 +128,14 @@ class LifeWallpaper : WallpaperService() {
 					"f%%",
 				percentDead * @Suppress("MagicNumber") 100f
 			)
+			var textBaseline = (screenHeight - (screenHeight * percentDead) - PROGRESS_LABEL_MARGIN)
+			if(reverse){
+				val progFontHeight = paint.fontMetrics.descent - paint.fontMetrics.ascent
+				textBaseline += progFontHeight
+			}
 			this.drawText(
 				progressLabel, PROGRESS_LABEL_MARGIN,
-				(screenHeight - (screenHeight * percentDead) - PROGRESS_LABEL_MARGIN),
+				textBaseline,
 				paint
 			)
 
@@ -131,12 +148,12 @@ class LifeWallpaper : WallpaperService() {
 			val goals =
 				pref.getString(getString(R.string.goalsKey), "")!!.split("\n").toTypedArray()
 			var lineNumber = 0
-			val fontHeight = paint.fontMetrics.descent - paint.fontMetrics.ascent
+			val goalsFontHeight = paint.fontMetrics.descent - paint.fontMetrics.ascent
 			for (line in goals) {
 				val textWidth = paint.measureText(line)
 				this.drawText(
 					line, (screenWidth - textWidth) / 2,
-					statusBarHeight + (0 - paint.fontMetrics.top) + lineNumber * fontHeight,
+					statusBarHeight - paint.fontMetrics.top + lineNumber * goalsFontHeight,
 					paint
 				)
 				lineNumber += 1

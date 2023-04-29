@@ -31,6 +31,10 @@
 		android:defaultValue="4"
 		android:key="@string/decimalsKey"
 		android:title="Decimal Places" />
+	<CheckBoxPreference
+		android:defaultValue="false"
+		android:key="@string/reverseKey"
+		android:title="Reverse" />
 	<EditTextPreference
 		android:hint="@string/goalsHint"
 		android:key="@string/goalsKey"
