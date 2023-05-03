@@ -11,8 +11,8 @@ android {
 		applicationId = "com.machinerychorus.lifeprogresswallpaper"
 		minSdk = 16
 		targetSdk = 33
-		versionCode = 15
-		versionName = "2.4.1"
+		versionCode = 14
+		versionName = "2.4.0"
 		multiDexEnabled = true
 
 		testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -34,12 +34,12 @@ android {
 		}
 	}
 	compileOptions {
-		sourceCompatibility = JavaVersion.VERSION_1_8
-		targetCompatibility = JavaVersion.VERSION_1_8
+		sourceCompatibility = JavaVersion.VERSION_11
+		targetCompatibility = JavaVersion.VERSION_11
 		isCoreLibraryDesugaringEnabled = true
 	}
 	kotlinOptions {
-		jvmTarget = "1.8"
+		jvmTarget = "11"
 	}
 	packaging {
 		resources {
@@ -71,7 +71,7 @@ detekt {
 
 tasks.withType<io.gitlab.arturbosch.detekt.Detekt>().configureEach {
 	// Target version of the generated JVM bytecode. It is used for type resolution.
-	jvmTarget = "1.8"
+	jvmTarget = "11"
 	reports {
 		html.required.set(false)
 		xml.required.set(false)
