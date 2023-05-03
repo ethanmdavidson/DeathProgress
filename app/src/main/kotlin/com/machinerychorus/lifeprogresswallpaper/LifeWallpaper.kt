@@ -24,6 +24,7 @@ const val DEFAULT_STATUS_BAR_HEIGHT = 100
 const val DAYS_IN_YEAR = 365.2425
 const val DAYS_IN_YEAR_WITHOUT_LEAPS = 365
 const val HOURS_IN_DAY = 24
+const val DAYS_IN_WEEK = 7
 const val PROGRESS_LABEL_MARGIN = 10f
 
 class LifeWallpaper : WallpaperService() {
@@ -155,16 +156,26 @@ class LifeWallpaper : WallpaperService() {
 						// refreshes every hour anyway
 						val years = (totalDays / DAYS_IN_YEAR_WITHOUT_LEAPS).toInt()
 						val days = (totalDays % DAYS_IN_YEAR_WITHOUT_LEAPS).toInt()
-						progressLabel = "${years}y ${days}d ${hours}h"
+						progressLabel = "${years}Y ${days}D ${hours}H"
 					}
 				}
 
-				"Days" -> {
-					progressLabel = if (!reverse) {
-						hoursAlive.toString()
+				"Weeks" -> {
+					val progress = if (!reverse) {
+						hoursAlive.toFloat() / HOURS_IN_DAY / DAYS_IN_WEEK
 					} else {
-						((hoursExpectancy - hoursAlive) / HOURS_IN_DAY).toInt().toString()
+						(hoursExpectancy - hoursAlive).toFloat() / HOURS_IN_DAY / DAYS_IN_WEEK
 					}
+					progressLabel = String.format(Locale.US, "%." + decimals + "f", progress)
+				}
+
+				"Days" -> {
+					val progress = if (!reverse) {
+						hoursAlive.toFloat() / HOURS_IN_DAY
+					} else {
+						(hoursExpectancy - hoursAlive).toFloat() / HOURS_IN_DAY
+					}
+					progressLabel = String.format(Locale.US, "%." + decimals + "f", progress)
 				}
 
 				"Hours" -> {
