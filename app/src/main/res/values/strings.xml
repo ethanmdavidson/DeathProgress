@@ -14,7 +14,17 @@
 	<string name="statusBarHeightKey">statusBarHeight</string>
 	<string name="setWallpaperButtonLabel">Set this Wallpaper</string>
 	<string name="setWallpaperButtonId">setWallpaperButton</string>
-
+	<string name="reverseKey">reverse</string>
+	<string name="progressUnitsKey">progressUnits</string>
 	<string name="cancel">Cancel</string>
 	<string name="confirm">Confirm</string>
+
+	<string-array name="progressUnits">
+		<item>Percentage</item>
+		<item>Duration</item>
+		<item>Weeks</item>
+		<item>Days</item>
+		<item>Hours</item>
+		<item>None</item>
+	</string-array>
 </resources>
