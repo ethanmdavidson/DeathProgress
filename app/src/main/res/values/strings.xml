@@ -21,7 +21,9 @@
 
 	<string-array name="progressUnits">
 		<item>Percentage</item>
+		<item>Duration</item>
 		<item>Days</item>
 		<item>Hours</item>
+		<item>None</item>
 	</string-array>
 </resources>

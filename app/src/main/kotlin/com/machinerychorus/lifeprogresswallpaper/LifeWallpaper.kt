@@ -16,11 +16,14 @@ import java.time.Duration
 import java.time.Instant
 import java.time.temporal.ChronoUnit
 import java.util.*
+import kotlin.time.toKotlinDuration
 
 const val DEFAULT_EXPECTANCY_YEARS = "85"
 const val DEFAULT_NUM_DECIMALS = "4"
 const val DEFAULT_STATUS_BAR_HEIGHT = 100
 const val DAYS_IN_YEAR = 365.2425
+const val DAYS_IN_YEAR_WITHOUT_LEAPS = 365
+const val HOURS_IN_DAY = 24
 const val PROGRESS_LABEL_MARGIN = 10f
 
 class LifeWallpaper : WallpaperService() {
@@ -83,10 +86,21 @@ class LifeWallpaper : WallpaperService() {
 			}
 		}
 
-		@Suppress("LongMethod") // I guess I should refactor this, but don't feel like it right now
+		@Suppress("LongMethod", // I guess I should refactor this, but don't feel like it right now
+			"CyclomaticComplexMethod",) // yikes, I really need to refactor this
 		fun Canvas.drawFrame() {
 			val pref = PreferenceManager.getDefaultSharedPreferences(applicationContext)
-			val percentDead = getPercentDead(pref)
+			val birthdate = DATE_FORMATTER.parse(
+				pref.getString(getString(R.string.birthdateKey), DEFAULT_DATE)!!
+			)!!.toInstant()
+			val yearsPref =
+				pref.getString(getString(R.string.expectancyKey), DEFAULT_EXPECTANCY_YEARS)!!
+			val expectancyYears =
+				Duration.of((yearsPref.toLong() * DAYS_IN_YEAR).toLong(), ChronoUnit.DAYS)
+
+			val hoursAlive = ChronoUnit.HOURS.between(birthdate, Instant.now())
+			val hoursExpectancy = ChronoUnit.HOURS.between(birthdate, birthdate.plus(expectancyYears))
+			val percentDead = hoursAlive.toFloat() / hoursExpectancy.toFloat()
 
 			//get screen width/height from surface because getDesiredMinimumWidth()/Height()
 			// doesn't always return the correct values (e.g. 1280x800 tablet returned 1920x1280)
@@ -113,20 +127,59 @@ class LifeWallpaper : WallpaperService() {
 			)
 
 			// Draw progress text at edge of progress bar
-			paint.textSize =
-				pref.getString(getString(R.string.progressFontSizeKey), "240")!!.toFloat()
-			var progressText = percentDead * @Suppress("MagicNumber") 100f
-			if (reverse) {
-				progressText = (1 - percentDead) * @Suppress("MagicNumber") 100f
+			paint.textSize = pref.getString(getString(R.string.progressFontSizeKey), "240")!!.toFloat()
+			val progressType = pref.getString(getString(R.string.progressUnitsKey), "Percentage") ?: "Percentage"
+			val decimals = pref.getString(getString(R.string.decimalsKey), DEFAULT_NUM_DECIMALS) ?: DEFAULT_NUM_DECIMALS
+			var progressLabel = ""
+			// this code is gross :/
+			when (progressType) {
+				"Percentage" -> {
+					val progress = if (!reverse) {
+						percentDead * @Suppress("MagicNumber") 100f
+					} else {
+						(1 - percentDead) * @Suppress("MagicNumber") 100f
+					}
+					progressLabel = String.format(Locale.US, "%." + decimals + "f%%", progress)
+				}
+
+				"Duration" -> {
+					val progress = if (!reverse) {
+						Duration.ofHours(hoursAlive)
+					} else {
+						Duration.ofHours(hoursExpectancy - hoursAlive)
+					}
+					progress.toKotlinDuration().toComponents { totalDays: Long, hours: Int, _: Int, _: Int, _: Int ->
+						// not attempting to account for leap years here because it just
+						// looked wrong (e.g. year wouldn't roll over until 366 days).
+						// We ignore minutes and seconds because the wallpaper only
+						// refreshes every hour anyway
+						val years = (totalDays / DAYS_IN_YEAR_WITHOUT_LEAPS).toInt()
+						val days = (totalDays % DAYS_IN_YEAR_WITHOUT_LEAPS).toInt()
+						progressLabel = "${years}y ${days}d ${hours}h"
+					}
+				}
+
+				"Days" -> {
+					progressLabel = if (!reverse) {
+						hoursAlive.toString()
+					} else {
+						((hoursExpectancy - hoursAlive) / HOURS_IN_DAY).toInt().toString()
+					}
+				}
+
+				"Hours" -> {
+					progressLabel = if (!reverse) {
+						hoursAlive.toString()
+					} else {
+						(hoursExpectancy - hoursAlive).toString()
+					}
+				}
+
+				"None" -> {
+					progressLabel = ""
+				}
 			}
-			val progressLabel = String.format(
-				Locale.US,
-				"%." + pref.getString(
-					getString(R.string.decimalsKey),
-					DEFAULT_NUM_DECIMALS
-				) + "f%%",
-				progressText
-			)
+
 			var textBaseline = (screenHeight - (screenHeight * percentDead) - PROGRESS_LABEL_MARGIN)
 			if (reverse) {
 				textBaseline -= paint.fontMetrics.ascent
@@ -146,8 +199,7 @@ class LifeWallpaper : WallpaperService() {
 				DEFAULT_STATUS_BAR_HEIGHT
 			)
 			paint.textSize = pref.getString(getString(R.string.goalsFontSizeKey), "75")!!.toFloat()
-			val goals =
-				pref.getString(getString(R.string.goalsKey), "")!!.split("\n").toTypedArray()
+			val goals = pref.getString(getString(R.string.goalsKey), "")!!.split("\n").toTypedArray()
 			var lineNumber = 0
 			val goalsFontHeight = paint.fontMetrics.descent - paint.fontMetrics.ascent
 			for (line in goals) {
@@ -159,20 +211,6 @@ class LifeWallpaper : WallpaperService() {
 				)
 				lineNumber += 1
 			}
-		}
-
-		private fun getPercentDead(pref: SharedPreferences): Float {
-			val birthdate = DATE_FORMATTER.parse(
-				pref.getString(getString(R.string.birthdateKey), DEFAULT_DATE)!!
-			)!!.toInstant()
-			val hoursAlive = ChronoUnit.HOURS.between(birthdate, Instant.now())
-			val yearsPref =
-				pref.getString(getString(R.string.expectancyKey), DEFAULT_EXPECTANCY_YEARS)!!
-			val yearsExpectancy =
-				Duration.of((yearsPref.toLong() * DAYS_IN_YEAR).toLong(), ChronoUnit.DAYS)
-			val hoursExpectancy =
-				ChronoUnit.HOURS.between(birthdate, birthdate.plus(yearsExpectancy))
-			return hoursAlive.toFloat() / hoursExpectancy.toFloat()
 		}
 
 		private fun getBackgroundColor(pref: SharedPreferences): Int {
