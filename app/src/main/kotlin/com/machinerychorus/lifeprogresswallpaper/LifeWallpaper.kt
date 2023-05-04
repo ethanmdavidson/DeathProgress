@@ -15,7 +15,7 @@ import java.text.SimpleDateFormat
 import java.time.Duration
 import java.time.Instant
 import java.time.temporal.ChronoUnit
-import java.util.*
+import java.util.Locale
 import kotlin.time.toKotlinDuration
 
 const val DEFAULT_EXPECTANCY_YEARS = "85"
