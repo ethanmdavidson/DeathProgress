@@ -8,10 +8,12 @@ import android.graphics.Paint
 import android.os.Build
 import android.service.wallpaper.WallpaperService
 import android.view.SurfaceHolder
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.preference.PreferenceManager
 import java.text.SimpleDateFormat
+import java.time.DateTimeException
 import java.time.Duration
 import java.time.Instant
 import java.time.temporal.ChronoUnit
@@ -100,7 +102,21 @@ class LifeWallpaper : WallpaperService() {
 				Duration.of((yearsPref.toLong() * DAYS_IN_YEAR).toLong(), ChronoUnit.DAYS)
 
 			val hoursAlive = ChronoUnit.HOURS.between(birthdate, Instant.now())
-			val hoursExpectancy = ChronoUnit.HOURS.between(birthdate, birthdate.plus(expectancyYears))
+			val deathDate = try {
+				birthdate.plus(expectancyYears)
+			} catch (e: DateTimeException){
+				// This error handling isn't very elegant, but I think that's okay in this
+				// scenario. The max Instant is the year 1,000,000,000 (a billion) so no
+				// user should hit this unless they're just messing around anyway. I thought
+				// about just not catching the exception, but decided against that because
+				// it would clutter up the app reporting, and crashing is not a good look.
+				println("Error calculating deathDate: ${e.message}")
+				Toast.makeText(applicationContext,
+					"LifeProgressWallpaper Error: (birthDate + expectancy) exceeds max instant",
+					Toast.LENGTH_LONG).show()
+				return
+			}
+			val hoursExpectancy = ChronoUnit.HOURS.between(birthdate, deathDate)
 			val percentDead = hoursAlive.toFloat() / hoursExpectancy.toFloat()
 
 			//get screen width/height from surface because getDesiredMinimumWidth()/Height()
