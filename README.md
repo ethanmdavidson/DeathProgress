@@ -1,6 +1,8 @@
 ## Death Progress and Life Perspective
 
-This is a live wallpaper for Android. It displays the percentage of your life that has already gone by. 
+This is a live wallpaper for Android. It displays the percentage of your life that has already gone by.
+It is meant to be an always-present [memento mori](https://en.wikipedia.org/wiki/Memento_mori), provoking
+you to frequently think about your mortality.
 
 See the [Google Play Store listing](https://play.google.com/store/apps/details?id=com.machinerychorus.lifeprogresswallpaper).
 
@@ -11,16 +13,20 @@ Uses [ColorPickerPreference by skydoves](https://github.com/skydoves/ColorPicker
 
 ### Other thoughts on this topic
 
+> Come to terms with death, thereafter anything is possible
+
+(Albert Camus)
+
+> Death destroys a man: the idea of Death saves him. Behind the coffins and the skeletons that stay the vulgar mind lies something so immense that all that is great in us responds to it. Men of the world may recoil from the charnel-house that they will one day enter, but Love knows better. Death is his foe, but his peer, and in their age-long struggle the thews of Love have been strengthened, and his vision cleared, until there is no one who can stand against him.
+
+(E.M. Forster)
+
+- [Think About Your Death and Live Better - Arthur C. Brooks](https://www.theatlantic.com/ideas/archive/2023/05/death-memento-mori-happiness/674158/)
 - [Your Real Biological Clock Is You're Going to Die - Tom Scocca](https://hmmdaily.com/2018/10/18/your-real-biological-clock-is-youre-going-to-die/)
 - [Don't lose your marbles! - John Maxwell](https://www.johnmaxwell.com/blog/dont-lose-your-marbles/)
 - [What Are You Doing With Your Life? - Kurzgesagt](https://www.youtube.com/watch?v=JXeJANDKwDc)
 - [Life is Short - Paul Graham](http://paulgraham.com/vb.html)
-
-> Come to terms with death, thereafter anything is possible
-- Albert Camus
-
-> Death destroys a man: the idea of Death saves him. Behind the coffins and the skeletons that stay the vulgar mind lies something so immense that all that is great in us responds to it. Men of the world may recoil from the charnel-house that they will one day enter, but Love knows better. Death is his foe, but his peer, and in their age-long struggle the thews of Love have been strengthened, and his vision cleared, until there is no one who can stand against him.
-- E.M. Forster
+- [What Good Is Thinking About Death? - Julie Beck](https://www.theatlantic.com/health/archive/2015/05/what-good-is-thinking-about-death/394151/)
 
 ## Roadmap and Feedback
 
