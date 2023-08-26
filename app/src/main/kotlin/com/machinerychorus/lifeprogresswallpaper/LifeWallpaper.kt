@@ -194,17 +194,13 @@ class LifeWallpaper : WallpaperService() {
 					progressLabel = String.format(Locale.US, "%." + decimals + "f", progress)
 				}
 
-				"Hours" -> {
-					progressLabel = if (!reverse) {
+				"Hours" -> progressLabel = if (!reverse) {
 						hoursAlive.toString()
 					} else {
 						(hoursExpectancy - hoursAlive).toString()
 					}
-				}
 
-				"None" -> {
-					progressLabel = ""
-				}
+				"None" -> progressLabel = ""
 			}
 
 			var textBaseline = (screenHeight - (screenHeight * percentDead) - PROGRESS_LABEL_MARGIN)
