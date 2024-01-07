@@ -10,7 +10,7 @@
 		android:key="@string/expectancyKey"
 		android:title="Life Expectancy"
 		app:useSimpleSummaryProvider="true" />
-	<com.skydoves.colorpickerpreference.ColorPickerPreference
+	<com.machinerychorus.lifeprogresswallpaper.customPrefs.ColorPreference
 		android:key="@string/bgColorKey"
 		android:title="Background Color"
 		app:default_color="@color/blackAsMySOUUUUUUUULLLL"
@@ -22,7 +22,7 @@
 		android:defaultValue="@color/blackAsMySOUUUUUUUULLLL"
 		android:title="Background Hex"
 		app:useSimpleSummaryProvider="true" />
-	<com.skydoves.colorpickerpreference.ColorPickerPreference
+	<com.machinerychorus.lifeprogresswallpaper.customPrefs.ColorPreference
 		android:key="@string/fgColorKey"
 		android:title="Foreground Color"
 		app:default_color="@color/wholesomeTeal"
