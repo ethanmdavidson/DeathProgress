@@ -2,6 +2,7 @@ package com.machinerychorus.lifeprogresswallpaper
 
 import android.graphics.Color
 import android.os.Bundle
+import android.widget.Toast
 import androidx.core.content.edit
 import androidx.preference.EditTextPreference
 import androidx.preference.Preference
@@ -14,6 +15,40 @@ import com.skydoves.colorpickerview.preference.ColorPickerPreferenceManager
 
 class WallpaperSettingsFragment : PreferenceFragmentCompat() {
 
+	private fun setColor(prefKey: String, pref: ColorPreference?, newColor: String): Boolean {
+		val manager = ColorPickerPreferenceManager.getInstance(context)
+
+		var isvalid = false
+		var hexColor = 0
+		try {
+			hexColor = Color.parseColor(newColor)
+			isvalid = true
+		} catch (ignored: IllegalArgumentException) {
+		}
+
+		if (isvalid) {
+			manager.clearSavedColor(prefKey)
+			manager.clearSavedSelectorPosition(prefKey)
+			manager.clearSavedAlphaSliderPosition(prefKey)
+			manager.clearSavedBrightnessSlider(prefKey)
+			manager.setColor(prefKey, hexColor)
+			manager.restoreColorPickerData(pref?.getColorPickerView())
+			preferenceManager
+				.sharedPreferences?.edit {
+					putInt(prefKey, hexColor)
+				}
+			pref?.refresh()
+		} else {
+			val toast = Toast.makeText(
+				context,
+				"Invalid hex color",
+				Toast.LENGTH_SHORT
+			)
+			toast.show()
+		}
+		return isvalid
+	}
+
 	override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
 		setPreferencesFromResource(R.xml.preferences, rootKey)
 
@@ -22,8 +57,6 @@ class WallpaperSettingsFragment : PreferenceFragmentCompat() {
 		val textPref = findPreference<EditTextPreference>(getString(R.string.goalsKey))
 		textPref?.setOnBindEditTextListener { editText -> editText.setHint(R.string.goalsHint) }
 
-		val manager = ColorPickerPreferenceManager.getInstance(context)
-
 		// listeners to keep hex and color selector in sync
 		val bgPref = findPreference<ColorPreference>(getString(R.string.bgColorKey))
 		val bgHexPref = findPreference<EditTextPreference>(getString(R.string.bgColorHexKey))
@@ -31,18 +64,7 @@ class WallpaperSettingsFragment : PreferenceFragmentCompat() {
 			bgHexPref?.text = "#"+envelope.hexCode
 		})
 		bgHexPref?.setOnPreferenceChangeListener { _, newValue ->
-			manager.clearSavedColor(getString(R.string.bgColorKey))
-			manager.clearSavedSelectorPosition(getString(R.string.bgColorKey))
-			manager.clearSavedAlphaSliderPosition(getString(R.string.bgColorKey))
-			manager.clearSavedBrightnessSlider(getString(R.string.bgColorKey))
-			manager.setColor(getString(R.string.bgColorKey), Color.parseColor(newValue.toString()))
-			manager.restoreColorPickerData(bgPref?.getColorPickerView())
-			preferenceManager
-				.sharedPreferences?.edit {
-					putInt(getString(R.string.bgColorKey), Color.parseColor(newValue.toString()))
-				}
-			bgPref?.refresh()
-			true
+			setColor(getString(R.string.bgColorKey),bgPref,newValue.toString())
 		}
 
 		// listeners to keep hex and color selector in sync
@@ -52,18 +74,7 @@ class WallpaperSettingsFragment : PreferenceFragmentCompat() {
 			fgHexPref?.text = "#"+envelope.hexCode
 		})
 		fgHexPref?.setOnPreferenceChangeListener { _, newValue ->
-			manager.clearSavedColor(getString(R.string.fgColorKey))
-			manager.clearSavedSelectorPosition(getString(R.string.fgColorKey))
-			manager.clearSavedAlphaSliderPosition(getString(R.string.fgColorKey))
-			manager.clearSavedBrightnessSlider(getString(R.string.fgColorKey))
-			manager.setColor(getString(R.string.fgColorKey), Color.parseColor(newValue.toString()))
-			manager.restoreColorPickerData(fgPref?.getColorPickerView())
-			preferenceManager
-				.sharedPreferences?.edit {
-					putInt(getString(R.string.fgColorKey), Color.parseColor(newValue.toString()))
-				}
-			fgPref?.refresh()
-			true
+			setColor(getString(R.string.fgColorKey),fgPref,newValue.toString())
 		}
 	}
 
