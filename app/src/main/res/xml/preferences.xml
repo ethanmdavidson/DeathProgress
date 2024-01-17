@@ -10,20 +10,30 @@
 		android:key="@string/expectancyKey"
 		android:title="Life Expectancy"
 		app:useSimpleSummaryProvider="true" />
-	<com.skydoves.colorpickerpreference.ColorPickerPreference
+	<com.machinerychorus.lifeprogresswallpaper.customPrefs.ColorPreference
 		android:key="@string/bgColorKey"
 		android:title="Background Color"
 		app:default_color="@color/blackAsMySOUUUUUUUULLLL"
 		app:preference_attachAlphaSlideBar="false"
 		app:preference_dialog_negative="@string/cancel"
 		app:preference_dialog_positive="@string/confirm" />
-	<com.skydoves.colorpickerpreference.ColorPickerPreference
+	<EditTextPreference
+		android:key="@string/bgColorHexKey"
+		android:defaultValue="@color/blackAsMySOUUUUUUUULLLL"
+		android:title="Background Hex"
+		app:useSimpleSummaryProvider="true" />
+	<com.machinerychorus.lifeprogresswallpaper.customPrefs.ColorPreference
 		android:key="@string/fgColorKey"
 		android:title="Foreground Color"
 		app:default_color="@color/wholesomeTeal"
 		app:preference_attachAlphaSlideBar="false"
 		app:preference_dialog_negative="@string/cancel"
 		app:preference_dialog_positive="@string/confirm" />
+	<EditTextPreference
+		android:key="@string/fgColorHexKey"
+		app:defaultValue="@color/wholesomeTeal"
+		android:title="Foreground Hex"
+		app:useSimpleSummaryProvider="true" />
 	<com.machinerychorus.lifeprogresswallpaper.customPrefs.IntegerPreference
 		android:defaultValue="240"
 		android:key="@string/progressFontSizeKey"
