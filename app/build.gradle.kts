@@ -1,7 +1,7 @@
 plugins {
 	id("com.android.application")
 	id("kotlin-android")
-	id("io.gitlab.arturbosch.detekt").version("1.23.1")
+	id("io.gitlab.arturbosch.detekt").version("1.23.4")
 }
 
 android {
@@ -50,10 +50,10 @@ android {
 }
 
 dependencies {
-	implementation("androidx.core:core-ktx:1.10.1")
+	implementation("androidx.core:core-ktx:1.12.0")
 	implementation("androidx.appcompat:appcompat:1.6.1")
-	implementation("com.google.android.material:material:1.9.0")
-	implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
+	implementation("com.google.android.material:material:1.11.0")
+	implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
 	implementation("androidx.preference:preference-ktx:1.2.1")
 	implementation("com.github.skydoves:colorpickerpreference:2.0.6")
 
@@ -61,7 +61,7 @@ dependencies {
 	androidTestImplementation("androidx.test.ext:junit:1.1.5")
 	androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
-	coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.3")
+	coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
 }
 
 detekt {
