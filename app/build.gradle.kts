@@ -11,8 +11,8 @@ android {
 		applicationId = "com.machinerychorus.lifeprogresswallpaper"
 		minSdk = 19
 		targetSdk = 34
-		versionCode = 19
-		versionName = "2.4.2"
+		versionCode = 17
+		versionName = "2.5.0"
 		multiDexEnabled = true
 
 		testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
