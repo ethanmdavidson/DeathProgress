@@ -9,9 +9,9 @@ android {
 
 	defaultConfig {
 		applicationId = "com.machinerychorus.lifeprogresswallpaper"
-		minSdk = 16
+		minSdk = 19
 		targetSdk = 34
-		versionCode = 16
+		versionCode = 19
 		versionName = "2.4.2"
 		multiDexEnabled = true
 
