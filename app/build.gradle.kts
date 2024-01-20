@@ -5,12 +5,12 @@ plugins {
 }
 
 android {
-	compileSdk = 33
+	compileSdk = 34
 
 	defaultConfig {
 		applicationId = "com.machinerychorus.lifeprogresswallpaper"
 		minSdk = 16
-		targetSdk = 33
+		targetSdk = 34
 		versionCode = 16
 		versionName = "2.4.2"
 		multiDexEnabled = true
