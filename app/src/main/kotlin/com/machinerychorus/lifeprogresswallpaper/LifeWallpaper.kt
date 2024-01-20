@@ -64,7 +64,7 @@ class LifeWallpaper : WallpaperService() {
 			prepAndDraw()
 		}
 
-		override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, s: String) {
+		override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, s: String?) {
 			prepAndDraw()
 		}
 
