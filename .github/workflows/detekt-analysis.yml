@@ -39,7 +39,7 @@ jobs:
       run: ./gradlew detekt
 
     # Uploads results to GitHub repository using the upload-sarif action
-    - uses: github/codeql-action/upload-sarif@4dd16135b69a43b6c8efb853346f8437d92d3c93
+    - uses: github/codeql-action/upload-sarif@f779452ac5af1c261dce0346a8f964149f49322b
       with:
         # Path to SARIF file relative to the root of the repository
         sarif_file: ${{ github.workspace }}/app/build/reports/detekt/detekt.sarif
