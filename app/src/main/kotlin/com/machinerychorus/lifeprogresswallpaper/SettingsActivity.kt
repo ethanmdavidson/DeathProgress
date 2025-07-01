@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceManager
+import androidx.core.content.edit
 
 class SettingsActivity : AppCompatActivity() {
 	override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,7 +38,7 @@ class SettingsActivity : AppCompatActivity() {
 		val pref: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(
 			applicationContext
 		)
-		pref.edit().putInt(getString(R.string.statusBarHeightKey), statusBarHeight).apply()
+		pref.edit { putInt(getString(R.string.statusBarHeightKey), statusBarHeight) }
 	}
 
 
