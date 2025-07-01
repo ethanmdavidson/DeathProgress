@@ -3,8 +3,7 @@
 # Scans are triggered:
 # 1. On every push to default and protected branches
 # 2. On every Pull Request targeting the default branch
-# 3. On a weekly schedule
-# 4. Manually, on demand, via the "workflow_dispatch" event
+# 3. Manually, on demand, via the "workflow_dispatch" event
 
 name: Scan with Detekt
 
@@ -21,9 +20,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # 4.2.2
+    - name: Checkout
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # 4.2.2
 
-    - uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00 # 4.7.1
+    - name: Setup Java
+      uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00 # 4.7.1
       with:
         distribution: 'temurin'
         java-version: '21'
