@@ -1,14 +1,14 @@
 package com.machinerychorus.lifeprogresswallpaper
 
-import android.graphics.Color
 import android.os.Bundle
 import android.widget.Toast
 import androidx.core.content.edit
+import androidx.core.graphics.toColorInt
 import androidx.preference.EditTextPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
-import com.machinerychorus.lifeprogresswallpaper.customPrefs.DateDialogPreference
 import com.machinerychorus.lifeprogresswallpaper.customPrefs.ColorPreference
+import com.machinerychorus.lifeprogresswallpaper.customPrefs.DateDialogPreference
 import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener
 import com.skydoves.colorpickerview.preference.ColorPickerPreferenceManager
 
@@ -21,10 +21,9 @@ class WallpaperSettingsFragment : PreferenceFragmentCompat() {
 		var isvalid = false
 		var hexColor = 0
 		try {
-			hexColor = Color.parseColor(newColor)
+			hexColor = newColor.toColorInt()
 			isvalid = true
-		} catch (ignored: IllegalArgumentException) {
-		}
+		} catch (_: IllegalArgumentException) {}
 
 		if (isvalid) {
 			manager.clearSavedColor(prefKey)
