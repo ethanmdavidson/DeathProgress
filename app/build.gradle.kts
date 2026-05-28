@@ -12,7 +12,7 @@ android {
 		applicationId = "com.machinerychorus.lifeprogresswallpaper"
 		minSdk = 23
 		targetSdk = 37
-		versionCode = 18
+		versionCode = 19
 		versionName = "2.7.0"
 		multiDexEnabled = true
 
