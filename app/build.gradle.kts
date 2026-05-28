@@ -1,8 +1,7 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.gradle.api.JavaVersion
 
 plugins {
 	id("com.android.application")
-	id("kotlin-android")
 	id("io.gitlab.arturbosch.detekt").version("1.23.8")
 }
 
@@ -21,8 +20,11 @@ android {
 		vectorDrawables {
 			useSupportLibrary = true
 		}
+	}
 
-		resourceConfigurations.addAll(listOf("en"))
+	androidResources {
+		@Suppress("UnstableApiUsage")
+		localeFilters += "en"
 	}
 
 	buildTypes {
@@ -31,7 +33,7 @@ android {
 			isShrinkResources = true
 			proguardFiles(
 				getDefaultProguardFile("proguard-android-optimize.txt"),
-				"proguard-rules.pro"
+				"proguard-rules.pro",
 			)
 		}
 	}
@@ -39,11 +41,6 @@ android {
 		sourceCompatibility = JavaVersion.VERSION_11
 		targetCompatibility = JavaVersion.VERSION_11
 		isCoreLibraryDesugaringEnabled = true
-	}
-	kotlin {
-		compilerOptions {
-			jvmTarget = JvmTarget.JVM_11
-		}
 	}
 	packaging {
 		resources {
